@@ -4,174 +4,953 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Aliyu Usman — Web Developer</title>
-  <meta
-    name="description"
-    content="Aliyu Usman is a computer science graduate and web developer interested in AI and machine learning."
-  >
+  <title>Aliyu Usman — Web developer</title>
+  <meta name="description" content="Aliyu Usman is a computer science graduate and web developer who builds websites and small tools, with an interest in AI and machine learning.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --bg: #F4EFE6;
+      --bg-2: #E7DFD1;
+      --ink: #1C1915;
+      --muted: #6B6458;
+      --line: #C9BDAA;
+      --accent: #C45C26;
+
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 40px;
+      --space-5: 64px;
+      --space-6: 104px;
+
+      --content: 1120px;
+      --reading: 680px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    ::selection {
+      background: #E8C9B0;
+      color: var(--ink);
+    }
+
+    a {
+      color: var(--ink);
+      text-decoration-color: var(--line);
+      text-underline-offset: 4px;
+      transition:
+        color 160ms ease,
+        text-decoration-color 160ms ease;
+    }
+
+    a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 100;
+      padding: 8px 12px;
+      background: var(--ink);
+      color: var(--bg);
+      text-decoration: none;
+      transform: translateY(-150%);
+      transition: transform 160ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header,
+    main,
+    .site-footer {
+      width: min(calc(100% - 32px), var(--content));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      min-height: 88px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      color: var(--ink);
+      font-family: "Newsreader", serif;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .nav {
+      display: flex;
+      gap: var(--space-3);
+    }
+
+    .nav a {
+      position: relative;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -5px;
+      left: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 160ms ease;
+    }
+
+    .nav a:hover,
+    .nav a.is-active {
+      color: var(--accent);
+    }
+
+    .nav a.is-active::after,
+    .nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .socials {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+    }
+
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    section {
+      scroll-margin-top: 32px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+      padding-block: var(--space-6);
+    }
+
+    .hero-portrait {
+      width: min(100%, 250px);
+    }
+
+    .portrait-frame {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--bg-2);
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .portrait-placeholder {
+      display: none;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: "Newsreader", serif;
+      font-size: 72px;
+      font-weight: 500;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 var(--space-2);
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: "Newsreader", serif;
+      font-weight: 500;
+      letter-spacing: -0.045em;
+      line-height: 0.98;
+    }
+
+    h1 {
+      max-width: 850px;
+      font-size: clamp(58px, 13vw, 140px);
+    }
+
+    .hero-sentence {
+      max-width: 650px;
+      margin: var(--space-4) 0 0;
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.35;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--line);
+    }
+
+    .meta-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 12px;
+      max-width: 520px;
+    }
+
+    .stack span {
+      white-space: nowrap;
+    }
+
+    .email-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .email-copy:hover {
+      color: var(--accent);
+    }
+
+    .copy-status {
+      min-width: 45px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+    }
+
+    .section {
+      padding-block: var(--space-6);
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+    }
+
+    .section-number {
+      padding-top: 8px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+    }
+
+    h2 {
+      font-size: clamp(42px, 7vw, 72px);
+    }
+
+    .project-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      padding-block: var(--space-4);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-image {
+      order: 1;
+      width: 100%;
+    }
+
+    .project-image-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--bg-2);
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-placeholder {
+      display: none;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-3);
+      color: var(--ink);
+      font-family: "Newsreader", serif;
+      font-size: clamp(28px, 5vw, 48px);
+      text-align: center;
+    }
+
+    .project-content {
+      order: 2;
+    }
+
+    .project-topline {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-3);
+      margin-bottom: var(--space-2);
+    }
+
+    .project-year,
+    .project-stack {
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+    }
+
+    .project-title {
+      display: inline;
+      margin: 0;
+      font-family: "Newsreader", serif;
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      text-decoration: none;
+    }
+
+    .project-title:hover {
+      color: var(--accent);
+    }
+
+    .project-blurb {
+      max-width: 580px;
+      margin: var(--space-3) 0;
+    }
+
+    .project-links {
+      display: flex;
+      gap: var(--space-3);
+      margin-top: var(--space-3);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+    }
+
+    .project-links a {
+      color: var(--accent);
+    }
+
+    .about-copy {
+      max-width: var(--reading);
+      margin-left: auto;
+      font-size: clamp(20px, 3vw, 25px);
+      line-height: 1.45;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .contact-lead {
+      max-width: 650px;
+      font-family: "Newsreader", serif;
+      font-size: clamp(34px, 6vw, 64px);
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: var(--space-3);
+      align-content: start;
+    }
+
+    .contact-note {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact-socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      margin-top: var(--space-2);
+    }
+
+    .contact-socials a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 16px;
+    }
+
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding-block: var(--space-4);
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-name {
+      font-family: "Newsreader", serif;
+      font-size: 22px;
+      text-decoration: none;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .footer-year {
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+    }
+
+    @media (min-width: 760px) {
+      .site-header,
+      main,
+      .site-footer {
+        width: min(calc(100% - 64px), var(--content));
+      }
+
+      .hero {
+        grid-template-columns: minmax(180px, 250px) 1fr;
+        gap: clamp(40px, 8vw, 120px);
+        align-items: center;
+      }
+
+      .hero-meta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .project {
+        grid-template-columns: minmax(280px, 0.85fr) minmax(300px, 1.15fr);
+        gap: clamp(40px, 7vw, 96px);
+        align-items: center;
+      }
+
+      .project-image {
+        order: 2;
+      }
+
+      .project-content {
+        order: 1;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: clamp(40px, 8vw, 120px);
+      }
+    }
+
+    @media (max-width: 759px) {
+      .header-right {
+        gap: 16px;
+      }
+
+      .header-right .socials {
+        display: none;
+      }
+
+      .site-header {
+        min-height: 72px;
+      }
+
+      .hero {
+        padding-block: 64px;
+      }
+
+      .hero-portrait {
+        width: 150px;
+      }
+
+      .section-heading {
+        grid-template-columns: 60px 1fr;
+      }
+
+      .site-footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .nav {
+        gap: 14px;
+      }
+
+      .nav a {
+        font-size: 12px;
+      }
+
+      h1 {
+        font-size: 58px;
+      }
+
+      .section {
+        padding-block: 64px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="header-name" href="#top">Aliyu Usman</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-      <nav class="site-nav" aria-label="Main navigation">
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Aliyu Usman home">Aliyu Usman</a>
+
+    <div class="header-right">
+      <nav class="nav" aria-label="Main navigation">
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
 
-      <a class="header-email" href="mailto:hello@aliyu.usman">
-        hello@aliyu.usman
-      </a>
+      <div class="socials" aria-label="Social links">
+        <a class="social-link" href="mailto:hello@aliyu.usman" aria-label="Email Aliyu Usman">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2.5 5.5h19v13h-19v-13Zm1.8 1.6 7.7 6 7.7-6H4.3Zm15.9 9.8V9.2l-7.6 5.9a1 1 0 0 1-1.2 0L4.3 9.2v7.7h16.1Z"/>
+          </svg>
+        </a>
+
+        <a class="social-link" href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.88c-2.78.6-3.37-1.18-3.37-1.18-.46-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.91.68 1.84v2.73c0 .27.18.58.69.48A10 10 0 0 0 12 2.2Z"/>
+          </svg>
+        </a>
+
+        <a class="social-link" href="https://linkedin.com/in/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5.1 3.5a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM3.6 8.4h3v12h-3v-12Zm4.9 0h2.9v1.64h.04c.4-.76 1.39-1.96 3.67-1.96 3.92 0 4.64 2.58 4.64 5.94v6.38h-3v-5.66c0-1.35-.03-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98v5.76h-3v-12Z"/>
+          </svg>
+        </a>
+
+        <a class="social-link" href="https://x.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="X">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.2 3.5h4.04l4.13 5.52 4.78-5.52h2.63l-6.2 7.16 6.43 8.58h-4.04l-4.37-5.84-5.06 5.84H3.91l6.48-7.48L4.2 3.5Zm2.55 1.8 7.2 12.14h1.79L8.54 5.3H6.75Z"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-main">
-        <p class="eyebrow">Computer science graduate</p>
-
-        <h1 id="hero-title">
-          Aliyu<br>
-          Usman
-        </h1>
-
-        <p class="hero-intro">
-          I build websites and small tools. CS grad, currently going deeper
-          into AI and ML.
-        </p>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-portrait">
+        <div class="portrait-frame">
+          <img
+            src="img/me.jpg"
+            alt="Portrait of Aliyu Usman"
+            id="portrait"
+          >
+          <div class="portrait-placeholder" id="portrait-placeholder" aria-hidden="true">AU</div>
+        </div>
       </div>
 
-      <aside class="hero-meta">
-        <div class="meta-group">
-          <span class="meta-label">Stack</span>
-          <ul class="stack-list">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>Python</li>
-            <li>PHP</li>
-            <li>SQL</li>
-          </ul>
-        </div>
+      <div class="hero-copy">
+        <p class="eyebrow">Computer science graduate / Web developer</p>
 
-        <div class="meta-group">
-          <span class="meta-label">Location</span>
-          <p class="meta-text">Your location</p>
-        </div>
+        <h1 id="hero-title">Aliyu Usman</h1>
 
-        <a class="text-link hero-contact" href="mailto:hello@aliyu.usman">
-          Get in touch <span aria-hidden="true">↗</span>
-        </a>
-      </aside>
+        <p class="hero-sentence">
+          I build websites and small tools. CS grad, currently going deeper into AI and ML.
+        </p>
+
+        <div class="hero-meta">
+          <div>
+            <span class="meta-label">Based in</span>
+            <span>[city]</span>
+          </div>
+
+          <div>
+            <span class="meta-label">Stack</span>
+            <div class="stack" aria-label="Technology stack">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Python</span>
+              <span>PHP</span>
+              <span>SQL</span>
+            </div>
+          </div>
+
+          <div>
+            <span class="meta-label">Email</span>
+            <button class="email-copy" type="button" data-email="hello@aliyu.usman">
+              <span>hello@aliyu.usman</span>
+              <span class="copy-status" aria-live="polite"></span>
+            </button>
+            <noscript>
+              <a href="mailto:hello@aliyu.usman">Email Aliyu Usman</a>
+            </noscript>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="section work-section" id="work" aria-labelledby="work-title">
+    <section class="section" id="work" aria-labelledby="work-title">
       <div class="section-heading">
-        <p class="section-number">01</p>
-        <h2 id="work-title">Work</h2>
+        <span class="section-number">01 / Work</span>
+        <h2 id="work-title">Selected work</h2>
       </div>
 
-      <!-- Paste additional project rows below this template. -->
       <div class="project-list">
-        <article class="project-row">
-          <div class="project-year">2026</div>
+        <!-- Duplicate this article to add more projects -->
+        <article class="project">
+          <div class="project-image">
+            <div class="project-image-frame">
+              <img
+                src="img/project-1.jpg"
+                alt="Screenshot of Project title"
+                loading="lazy"
+                class="project-screenshot"
+              >
+              <div class="project-placeholder" aria-hidden="true">
+                Project title
+              </div>
+            </div>
+          </div>
 
           <div class="project-content">
-            <h3>
-              <a class="project-title" href="#">
-                Project title
-              </a>
-            </h3>
+            <div class="project-topline">
+              <span class="project-stack">HTML / CSS / JS</span>
+              <span class="project-year">2026</span>
+            </div>
+
+            <a class="project-title" href="#project-title">Project title</a>
 
             <p class="project-blurb">
               Short description of what it is and what I built. I’ll replace this.
             </p>
-          </div>
 
-          <div class="project-stack">
-            HTML / CSS / JS
-          </div>
-
-          <div class="project-links">
-            <a href="#">Live <span aria-hidden="true">↗</span></a>
-            <a href="#">Code <span aria-hidden="true">↗</span></a>
+            <div class="project-links" aria-label="Project links">
+              <a href="#" aria-label="View Project title live">Live ↗</a>
+              <a href="#" aria-label="View Project title source code">Code ↗</a>
+            </div>
           </div>
         </article>
       </div>
-      <!-- Paste additional project rows above this comment. -->
     </section>
 
-    <section class="section about-section" id="about" aria-labelledby="about-title">
+    <section class="section" id="about" aria-labelledby="about-title">
       <div class="section-heading">
-        <p class="section-number">02</p>
-        <h2 id="about-title">About</h2>
+        <span class="section-number">02 / About</span>
+        <h2 id="about-title">A little about me</h2>
       </div>
 
       <div class="about-copy">
         <p>
           I’m a computer science graduate who builds for the web.
           I work mainly with HTML, CSS, JavaScript, Python, PHP, and SQL.
-          I’m also learning more about AI and machine learning.
-          Most of what I build starts with a simple problem and a browser.
+          I like making useful things that are simple to use and maintain.
+          Right now, I’m learning more about AI and machine learning.
         </p>
       </div>
     </section>
 
-    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+    <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="section-heading">
-        <p class="section-number">03</p>
-        <h2 id="contact-title">Contact</h2>
+        <span class="section-number">03 / Contact</span>
+        <h2 id="contact-title">Get in touch</h2>
       </div>
 
-      <div class="contact-content">
-        <div class="contact-links">
-          <a
-            class="contact-email email-copy"
-            href="mailto:hello@aliyu.usman"
-            data-email="hello@aliyu.usman"
-            aria-label="Email Aliyu Usman"
-          >
-            hello@aliyu.usman
-          </a>
-
-          <button class="copy-status" type="button" aria-live="polite">
-            Copy email
-          </button>
-
-          <a
-            class="github-link"
-            href="https://github.com/USERNAME"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub <span aria-hidden="true">↗</span>
-          </a>
+      <div class="contact-grid">
+        <div class="contact-lead">
+          Open to internships, junior roles, and small freelance sites.
         </div>
 
-        <p class="contact-note">
-          Open to internships, junior roles, and small freelance sites.
-        </p>
+        <div class="contact-details">
+          <div>
+            <span class="meta-label">Email</span>
+            <button class="email-copy" type="button" data-email="hello@aliyu.usman">
+              <span>hello@aliyu.usman</span>
+              <span class="copy-status" aria-live="polite"></span>
+            </button>
+          </div>
+
+          <div>
+            <span class="meta-label">Social</span>
+            <div class="contact-socials">
+              <a href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="Aliyu Usman on GitHub">
+                <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+                  <path fill="currentColor" d="M12 2.2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.88c-2.78.6-3.37-1.18-3.37-1.18-.46-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.91.68 1.84v2.73c0 .27.18.58.69.48A10 10 0 0 0 12 2.2Z"/>
+                </svg>
+                GitHub
+              </a>
+
+              <a href="https://linkedin.com/in/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="Aliyu Usman on LinkedIn">
+                <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+                  <path fill="currentColor" d="M5.1 3.5a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM3.6 8.4h3v12h-3v-12Zm4.9 0h2.9v1.64h.04c.4-.76 1.39-1.96 3.67-1.96 3.92 0 4.64 2.58 4.64 5.94v6.38h-3v-5.66c0-1.35-.03-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98v5.76h-3v-12Z"/>
+                </svg>
+                LinkedIn
+              </a>
+
+              <a href="https://x.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="Aliyu Usman on X">
+                <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+                  <path fill="currentColor" d="M4.2 3.5h4.04l4.13 5.52 4.78-5.52h2.63l-6.2 7.16 6.43 8.58h-4.04l-4.37-5.84-5.06 5.84H3.91l6.48-7.48L4.2 3.5Zm2.55 1.8 7.2 12.14h1.79L8.54 5.3H6.75Z"/>
+                </svg>
+                X
+              </a>
+
+              <a href="mailto:hello@aliyu.usman" aria-label="Email Aliyu Usman">
+                <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+                  <path fill="currentColor" d="M2.5 5.5h19v13h-19v-13Zm1.8 1.6 7.7 6 7.7-6H4.3Zm15.9 9.8V9.2l-7.6 5.9a1 1 0 0 1-1.2 0L4.3 9.2v7.7h16.1Z"/>
+                </svg>
+                Email
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <span>Aliyu Usman</span>
-    <span>2026</span>
+    <a class="footer-name" href="#top">Aliyu Usman</a>
+
+    <div class="footer-right">
+      <span class="footer-year">© 2026</span>
+
+      <div class="socials" aria-label="Footer social links">
+        <a class="social-link" href="mailto:hello@aliyu.usman" aria-label="Email Aliyu Usman">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2.5 5.5h19v13h-19v-13Zm1.8 1.6 7.7 6 7.7-6H4.3Zm15.9 9.8V9.2l-7.6 5.9a1 1 0 0 1-1.2 0L4.3 9.2v7.7h16.1Z"/>
+          </svg>
+        </a>
+
+        <a class="social-link" href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.88c-2.78.6-3.37-1.18-3.37-1.18-.46-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.91.68 1.84v2.73c0 .27.18.58.69.48A10 10 0 0 0 12 2.2Z"/>
+          </svg>
+        </a>
+
+        <a class="social-link" href="https://linkedin.com/in/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5.1 3.5a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM3.6 8.4h3v12h-3v-12Zm4.9 0h2.9v1.64h.04c.4-.76 1.39-1.96 3.67-1.96 3.92 0 4.64 2.58 4.64 5.94v6.38h-3v-5.66c0-1.35-.03-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98v5.76h-3v-12Z"/>
+          </svg>
+        </a>
+
+        <a class="social-link" href="https://x.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="X">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.2 3.5h4.04l4.13 5.52 4.78-5.52h2.63l-6.2 7.16 6.43 8.58h-4.04l-4.37-5.84-5.06 5.84H3.91l6.48-7.48L4.2 3.5Zm2.55 1.8 7.2 12.14h1.79L8.54 5.3H6.75Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const navLinks = [...document.querySelectorAll(".nav a")];
+      const sections = navLinks
+        .map(link => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+
+      // Highlight the current section in the navigation.
+      const updateActiveNav = () => {
+        const marker = window.scrollY + window.innerHeight * 0.35;
+        let currentId = sections[0]?.id;
+
+        sections.forEach(section => {
+          if (section.offsetTop <= marker) {
+            currentId = section.id;
+          }
+        });
+
+        navLinks.forEach(link => {
+          const isActive = link.getAttribute("href") === `#${currentId}`;
+          link.classList.toggle("is-active", isActive);
+          if (isActive) {
+            link.setAttribute("aria-current", "page");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      };
+
+      window.addEventListener("scroll", updateActiveNav, { passive: true });
+      window.addEventListener("resize", updateActiveNav);
+      updateActiveNav();
+
+      // Copy email while keeping the visible address as a normal mailto fallback.
+      const emailButtons = document.querySelectorAll(".email-copy");
+
+      emailButtons.forEach(button => {
+        button.addEventListener("click", async () => {
+          const email = button.dataset.email;
+          const status = button.querySelector(".copy-status");
+
+          try {
+            await navigator.clipboard.writeText(email);
+            status.textContent = "Copied";
+          } catch {
+            window.location.href = `mailto:${email}`;
+            return;
+          }
+
+          window.setTimeout(() => {
+            status.textContent = "";
+          }, 1800);
+        });
+      });
+
+      // Replace missing portrait with the requested initials placeholder.
+      const portrait = document.getElementById("portrait");
+      const portraitPlaceholder = document.getElementById("portrait-placeholder");
+
+      const showPortraitPlaceholder = () => {
+        portrait.style.display = "none";
+        portraitPlaceholder.style.display = "flex";
+      };
+
+      portrait.addEventListener("error", showPortraitPlaceholder);
+
+      if (portrait.complete && portrait.naturalWidth === 0) {
+        showPortraitPlaceholder();
+      }
+
+      // Replace a missing project screenshot without showing a broken-image icon.
+      document.querySelectorAll(".project-screenshot").forEach(image => {
+        const placeholder = image.parentElement.querySelector(".project-placeholder");
+
+        const showProjectPlaceholder = () => {
+          image.style.display = "none";
+          placeholder.style.display = "flex";
+        };
+
+        image.addEventListener("error", showProjectPlaceholder);
+
+        if (image.complete && image.naturalWidth === 0) {
+          showProjectPlaceholder();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
