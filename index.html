@@ -1,1 +1,177 @@
-index page
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Aliyu Usman — Web Developer</title>
+  <meta
+    name="description"
+    content="Aliyu Usman is a computer science graduate and web developer interested in AI and machine learning."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="header-name" href="#top">Aliyu Usman</a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="header-email" href="mailto:hello@aliyu.usman">
+        hello@aliyu.usman
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-main">
+        <p class="eyebrow">Computer science graduate</p>
+
+        <h1 id="hero-title">
+          Aliyu<br>
+          Usman
+        </h1>
+
+        <p class="hero-intro">
+          I build websites and small tools. CS grad, currently going deeper
+          into AI and ML.
+        </p>
+      </div>
+
+      <aside class="hero-meta">
+        <div class="meta-group">
+          <span class="meta-label">Stack</span>
+          <ul class="stack-list">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>PHP</li>
+            <li>SQL</li>
+          </ul>
+        </div>
+
+        <div class="meta-group">
+          <span class="meta-label">Location</span>
+          <p class="meta-text">Your location</p>
+        </div>
+
+        <a class="text-link hero-contact" href="mailto:hello@aliyu.usman">
+          Get in touch <span aria-hidden="true">↗</span>
+        </a>
+      </aside>
+    </section>
+
+    <section class="section work-section" id="work" aria-labelledby="work-title">
+      <div class="section-heading">
+        <p class="section-number">01</p>
+        <h2 id="work-title">Work</h2>
+      </div>
+
+      <!-- Paste additional project rows below this template. -->
+      <div class="project-list">
+        <article class="project-row">
+          <div class="project-year">2026</div>
+
+          <div class="project-content">
+            <h3>
+              <a class="project-title" href="#">
+                Project title
+              </a>
+            </h3>
+
+            <p class="project-blurb">
+              Short description of what it is and what I built. I’ll replace this.
+            </p>
+          </div>
+
+          <div class="project-stack">
+            HTML / CSS / JS
+          </div>
+
+          <div class="project-links">
+            <a href="#">Live <span aria-hidden="true">↗</span></a>
+            <a href="#">Code <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+      <!-- Paste additional project rows above this comment. -->
+    </section>
+
+    <section class="section about-section" id="about" aria-labelledby="about-title">
+      <div class="section-heading">
+        <p class="section-number">02</p>
+        <h2 id="about-title">About</h2>
+      </div>
+
+      <div class="about-copy">
+        <p>
+          I’m a computer science graduate who builds for the web.
+          I work mainly with HTML, CSS, JavaScript, Python, PHP, and SQL.
+          I’m also learning more about AI and machine learning.
+          Most of what I build starts with a simple problem and a browser.
+        </p>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="section-heading">
+        <p class="section-number">03</p>
+        <h2 id="contact-title">Contact</h2>
+      </div>
+
+      <div class="contact-content">
+        <div class="contact-links">
+          <a
+            class="contact-email email-copy"
+            href="mailto:hello@aliyu.usman"
+            data-email="hello@aliyu.usman"
+            aria-label="Email Aliyu Usman"
+          >
+            hello@aliyu.usman
+          </a>
+
+          <button class="copy-status" type="button" aria-live="polite">
+            Copy email
+          </button>
+
+          <a
+            class="github-link"
+            href="https://github.com/USERNAME"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <p class="contact-note">
+          Open to internships, junior roles, and small freelance sites.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>Aliyu Usman</span>
+    <span>2026</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
