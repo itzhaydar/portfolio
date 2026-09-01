@@ -3,74 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Aliyu Usman — Web developer</title>
-  <meta name="description" content="Aliyu Usman is a computer science graduate and web developer who builds websites and small tools, with an interest in AI and machine learning.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <meta name="description" content="Aliyu Usman is a computer science graduate and web developer building websites and small tools while going deeper into AI and machine learning.">
+  <meta name="theme-color" content="#10110f">
+  <meta name="color-scheme" content="dark light">
+  <title>Aliyu Usman — Web Developer</title>
 
   <style>
     :root {
-      --bg: #F4EFE6;
-      --bg-2: #E7DFD1;
-      --ink: #1C1915;
-      --muted: #6B6458;
-      --line: #C9BDAA;
-      --accent: #C45C26;
-
-      --space-1: 8px;
-      --space-2: 16px;
-      --space-3: 24px;
-      --space-4: 40px;
-      --space-5: 64px;
-      --space-6: 104px;
-
-      --content: 1120px;
-      --reading: 680px;
+      --bg: #10110f;
+      --bg-soft: #161814;
+      --surface: #1b1d1a;
+      --surface-2: #22251f;
+      --text: #f1f2eb;
+      --muted: #a6aaa0;
+      --faint: #686d63;
+      --line: rgba(241, 242, 235, .11);
+      --line-strong: rgba(241, 242, 235, .18);
+      --accent: #c7f36b;
+      --accent-dark: #19200d;
+      --max: 1180px;
+      --nav-height: 76px;
+      --radius: 18px;
+      --ease: cubic-bezier(.22, .61, .36, 1);
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 20px);
     }
 
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: "IBM Plex Sans", sans-serif;
-      font-size: 18px;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 78% 8%, rgba(199, 243, 107, .055), transparent 26rem),
+        var(--bg);
+      color: var(--text);
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     ::selection {
-      background: #E8C9B0;
-      color: var(--ink);
+      background: var(--accent);
+      color: var(--accent-dark);
     }
 
     a {
-      color: var(--ink);
-      text-decoration-color: var(--line);
-      text-underline-offset: 4px;
-      transition:
-        color 160ms ease,
-        text-decoration-color 160ms ease;
+      color: inherit;
+      text-decoration: none;
     }
 
-    a:hover {
-      color: var(--accent);
-      text-decoration-color: var(--accent);
-    }
-
-    a:focus-visible,
-    button:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 4px;
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
     }
 
     img {
@@ -78,528 +72,866 @@
       max-width: 100%;
     }
 
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin-inline: auto;
+    }
+
     .skip-link {
       position: fixed;
-      top: 16px;
-      left: 16px;
-      z-index: 100;
-      padding: 8px 12px;
-      background: var(--ink);
-      color: var(--bg);
-      text-decoration: none;
+      z-index: 9999;
+      top: 12px;
+      left: 12px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #10110f;
+      font-size: .85rem;
+      font-weight: 750;
       transform: translateY(-150%);
-      transition: transform 160ms ease;
+      transition: transform .2s ease;
     }
 
     .skip-link:focus {
       transform: translateY(0);
     }
 
-    .site-header,
-    main,
-    .site-footer {
-      width: min(calc(100% - 32px), var(--content));
-      margin-inline: auto;
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
     }
 
+    /* ---------------- Header ---------------- */
+
     .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-height);
+      border-bottom: 1px solid transparent;
+      background: rgba(16, 17, 15, .82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transition:
+        border-color .25s ease,
+        background .25s ease;
+    }
+
+    .site-header.scrolled {
+      border-color: var(--line);
+      background: rgba(16, 17, 15, .93);
+    }
+
+    .header-inner {
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: var(--space-3);
-      min-height: 88px;
-      border-bottom: 1px solid var(--line);
+      gap: 24px;
     }
 
     .brand {
-      color: var(--ink);
-      font-family: "Newsreader", serif;
-      font-size: 25px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .96rem;
+      font-weight: 780;
+      letter-spacing: -.025em;
       white-space: nowrap;
     }
 
-    .header-right {
-      display: flex;
+    .brand-mark {
+      width: 27px;
+      height: 27px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      background: var(--surface);
+      color: var(--accent);
+      font-size: .68rem;
+      font-weight: 850;
+      letter-spacing: -.05em;
+    }
+
+    .desktop-nav {
+      display: none;
       align-items: center;
-      gap: var(--space-3);
+      gap: 4px;
     }
 
-    .nav {
-      display: flex;
-      gap: var(--space-3);
-    }
-
-    .nav a {
+    .desktop-nav a {
       position: relative;
+      padding: 8px 12px;
       color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 600;
+      transition: color .2s ease;
     }
 
-    .nav a::after {
+    .desktop-nav a::after {
       content: "";
       position: absolute;
-      right: 0;
-      bottom: -5px;
-      left: 0;
+      right: 12px;
+      bottom: 2px;
+      left: 12px;
       height: 1px;
       background: var(--accent);
       transform: scaleX(0);
       transform-origin: right;
-      transition: transform 160ms ease;
+      transition: transform .25s var(--ease);
     }
 
-    .nav a:hover,
-    .nav a.is-active {
-      color: var(--accent);
+    .desktop-nav a:hover,
+    .desktop-nav a.active {
+      color: var(--text);
     }
 
-    .nav a.is-active::after,
-    .nav a:hover::after {
+    .desktop-nav a.active::after {
       transform: scaleX(1);
       transform-origin: left;
     }
 
-    .socials {
+    .header-socials {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 6px;
     }
 
-    .social-link {
+    .icon-link {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      border-radius: 50%;
+      transition:
+        color .2s ease,
+        background .2s ease,
+        transform .2s var(--ease);
+    }
+
+    .icon-link:hover {
+      color: var(--text);
+      background: var(--surface);
+      transform: translateY(-2px);
+    }
+
+    .icon-link svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-link.x-icon svg {
+      stroke-width: 1.55;
+    }
+
+    /* ---------------- Hero ---------------- */
+
+    .hero {
+      min-height: calc(100svh - var(--nav-height));
+      display: flex;
+      align-items: center;
+      padding: 74px 0 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 7%;
+      right: -160px;
+      width: 430px;
+      height: 430px;
+      border: 1px solid rgba(199, 243, 107, .08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 22%;
+      right: 15%;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow:
+        0 0 0 7px rgba(199, 243, 107, .05),
+        0 0 30px rgba(199, 243, 107, .2);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 26px;
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-line {
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      max-width: 880px;
+      font-size: clamp(3.2rem, 13vw, 8.8rem);
+      font-weight: 650;
+      line-height: .89;
+      letter-spacing: -.075em;
+    }
+
+    .hero h1 .outline {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(241, 242, 235, .34);
+    }
+
+    .hero-bottom {
+      display: grid;
+      gap: 28px;
+      align-items: end;
+    }
+
+    .hero-copy {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.16rem);
+      line-height: 1.65;
+    }
+
+    .hero-copy strong {
+      color: var(--text);
+      font-weight: 550;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button {
+      min-height: 46px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: var(--muted);
-      text-decoration: none;
+      gap: 9px;
+      padding: 0 18px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 700;
+      transition:
+        background .2s ease,
+        border-color .2s ease,
+        color .2s ease,
+        transform .2s var(--ease);
     }
 
-    .social-link:hover {
-      color: var(--accent);
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(199, 243, 107, .5);
     }
 
-    .social-link svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
+    .button.primary {
+      background: var(--accent);
+      color: #11130e;
+      border-color: var(--accent);
     }
 
-    main {
-      overflow: hidden;
+    .button.primary:hover {
+      background: #d5fa82;
     }
 
-    section {
-      scroll-margin-top: 32px;
+    .button svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
-    .hero {
+    .scroll-note {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      color: var(--faint);
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .scroll-note span {
+      width: 38px;
+      height: 1px;
+      background: var(--line-strong);
+    }
+
+    /* ---------------- General Sections ---------------- */
+
+    .section {
+      padding: 110px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-5);
-      padding-block: var(--space-6);
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 54px;
     }
 
-    .hero-portrait {
-      width: min(100%, 250px);
+    .section-number {
+      padding-top: 6px;
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: .7rem;
+      font-weight: 700;
     }
 
-    .portrait-frame {
+    .section-title {
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 620;
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .section-intro {
+      max-width: 500px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    /* ---------------- Work ---------------- */
+
+    .project {
+      display: grid;
+      gap: 26px;
+    }
+
+    .project-visual {
       position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(199, 243, 107, .055), transparent 42%),
+        var(--surface);
+    }
+
+    .project-image,
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+    }
+
+    .project-image {
+      object-fit: cover;
+      transition: transform .7s var(--ease);
+    }
+
+    .project:hover .project-image {
+      transform: scale(1.025);
+    }
+
+    .image-placeholder {
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      color: var(--muted);
+      background:
+        linear-gradient(90deg, transparent 49.8%, rgba(241, 242, 235, .04) 50%, transparent 50.2%),
+        linear-gradient(0deg, transparent 49.8%, rgba(241, 242, 235, .04) 50%, transparent 50.2%),
+        var(--surface);
+      background-size: 52px 52px;
+    }
+
+    .image-placeholder::before {
+      content: "";
+      position: absolute;
+      width: 42%;
+      aspect-ratio: 1;
+      border: 1px solid rgba(199, 243, 107, .15);
+      border-radius: 50%;
+    }
+
+    .placeholder-label {
+      position: relative;
+      padding: 9px 13px;
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      background: rgba(16, 17, 15, .72);
+      color: var(--text);
+      font-size: .72rem;
+      font-weight: 650;
+      letter-spacing: .02em;
+    }
+
+    .project-meta {
+      display: grid;
+      gap: 24px;
+    }
+
+    .project-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+      color: var(--faint);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .project-name {
+      margin-bottom: 12px;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      font-weight: 620;
+      letter-spacing: -.045em;
+    }
+
+    .project-blurb {
+      max-width: 590px;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .project-details {
+      display: grid;
+      gap: 18px;
+    }
+
+    .detail-label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--faint);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stack span {
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: .67rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--line-strong);
+      font-size: .78rem;
+      font-weight: 700;
+      transition:
+        color .2s ease,
+        border-color .2s ease;
+    }
+
+    .text-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .text-link svg {
+      width: 13px;
+      height: 13px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ---------------- About ---------------- */
+
+    .about-grid {
+      display: grid;
+      gap: 54px;
+    }
+
+    .about-statement {
+      max-width: 790px;
+      font-size: clamp(1.7rem, 4vw, 3rem);
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: -.045em;
+    }
+
+    .about-statement em {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    .about-side {
+      display: grid;
+      gap: 36px;
+    }
+
+    .portrait {
+      width: min(100%, 310px);
       aspect-ratio: 4 / 5;
       overflow: hidden;
-      border-radius: 8px;
-      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
     }
 
-    .portrait-frame img {
+    .portrait img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
     .portrait-placeholder {
-      display: none;
       width: 100%;
       height: 100%;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-family: "Newsreader", serif;
-      font-size: 72px;
-      font-weight: 500;
-    }
-
-    .hero-copy {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .eyebrow {
-      margin: 0 0 var(--space-2);
-      color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-    }
-
-    h1,
-    h2 {
-      margin: 0;
-      font-family: "Newsreader", serif;
-      font-weight: 500;
-      letter-spacing: -0.045em;
-      line-height: 0.98;
-    }
-
-    h1 {
-      max-width: 850px;
-      font-size: clamp(58px, 13vw, 140px);
-    }
-
-    .hero-sentence {
-      max-width: 650px;
-      margin: var(--space-4) 0 0;
-      font-size: clamp(20px, 3vw, 28px);
-      line-height: 1.35;
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-      margin-top: var(--space-5);
-      padding-top: var(--space-3);
-      border-top: 1px solid var(--line);
-    }
-
-    .meta-label {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px 12px;
-      max-width: 520px;
-    }
-
-    .stack span {
-      white-space: nowrap;
-    }
-
-    .email-copy {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border: 0;
-      padding: 0;
-      background: transparent;
-      color: var(--ink);
-      font: inherit;
-      cursor: pointer;
-    }
-
-    .email-copy:hover {
-      color: var(--accent);
-    }
-
-    .copy-status {
-      min-width: 45px;
-      color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 11px;
-    }
-
-    .section {
-      padding-block: var(--space-6);
-      border-top: 1px solid var(--line);
-    }
-
-    .section-heading {
       display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: var(--space-3);
-      margin-bottom: var(--space-5);
-    }
-
-    .section-number {
-      padding-top: 8px;
-      color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-    }
-
-    h2 {
-      font-size: clamp(42px, 7vw, 72px);
-    }
-
-    .project-list {
-      border-top: 1px solid var(--line);
-    }
-
-    .project {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
-      padding-block: var(--space-4);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .project-image {
-      order: 1;
-      width: 100%;
-    }
-
-    .project-image-frame {
+      place-items: center;
       position: relative;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: var(--bg-2);
+      background:
+        radial-gradient(circle at 50% 38%, rgba(199, 243, 107, .11), transparent 25%),
+        var(--surface);
     }
 
-    .project-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .project-placeholder {
-      display: none;
+    .portrait-placeholder::before {
+      content: "";
       position: absolute;
-      inset: 0;
-      align-items: center;
-      justify-content: center;
-      padding: var(--space-3);
-      color: var(--ink);
-      font-family: "Newsreader", serif;
-      font-size: clamp(28px, 5vw, 48px);
-      text-align: center;
+      width: 55%;
+      aspect-ratio: 1;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
     }
 
-    .project-content {
-      order: 2;
-    }
-
-    .project-topline {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: var(--space-3);
-      margin-bottom: var(--space-2);
-    }
-
-    .project-year,
-    .project-stack {
-      color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-    }
-
-    .project-title {
-      display: inline;
-      margin: 0;
-      font-family: "Newsreader", serif;
-      font-size: clamp(34px, 5vw, 52px);
-      font-weight: 500;
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-      text-decoration: none;
-    }
-
-    .project-title:hover {
+    .initials {
+      position: relative;
       color: var(--accent);
-    }
-
-    .project-blurb {
-      max-width: 580px;
-      margin: var(--space-3) 0;
-    }
-
-    .project-links {
-      display: flex;
-      gap: var(--space-3);
-      margin-top: var(--space-3);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-    }
-
-    .project-links a {
-      color: var(--accent);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -.08em;
     }
 
     .about-copy {
-      max-width: var(--reading);
-      margin-left: auto;
-      font-size: clamp(20px, 3vw, 25px);
-      line-height: 1.45;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-5);
-    }
-
-    .contact-lead {
-      max-width: 650px;
-      font-family: "Newsreader", serif;
-      font-size: clamp(34px, 6vw, 64px);
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-    }
-
-    .contact-details {
-      display: grid;
-      gap: var(--space-3);
-      align-content: start;
-    }
-
-    .contact-note {
-      margin: 0;
+      max-width: 500px;
       color: var(--muted);
+      font-size: .95rem;
     }
 
-    .contact-socials {
+    .about-copy p + p {
+      margin-top: 16px;
+    }
+
+    .skills {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px 24px;
-      margin-top: var(--space-2);
-    }
-
-    .contact-socials a {
-      display: inline-flex;
-      align-items: center;
       gap: 7px;
-      font-size: 16px;
+      max-width: 560px;
     }
 
-    .site-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-3);
-      padding-block: var(--space-4);
+    .skill {
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: .69rem;
+    }
+
+    .skill.interest {
+      color: var(--accent);
+      border-color: rgba(199, 243, 107, .22);
+    }
+
+    /* ---------------- Contact ---------------- */
+
+    .contact-section {
+      padding-bottom: 80px;
+    }
+
+    .contact-layout {
+      display: grid;
+      gap: 52px;
+    }
+
+    .contact-title {
+      max-width: 850px;
+      font-size: clamp(2.8rem, 9vw, 7.5rem);
+      font-weight: 620;
+      line-height: .9;
+      letter-spacing: -.075em;
+    }
+
+    .contact-title span {
+      color: var(--accent);
+    }
+
+    .contact-description {
+      max-width: 480px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .contact-list {
+      display: grid;
       border-top: 1px solid var(--line);
     }
 
-    .footer-name {
-      font-family: "Newsreader", serif;
-      font-size: 22px;
-      text-decoration: none;
-    }
-
-    .footer-right {
+    .contact-item {
+      min-height: 68px;
       display: flex;
       align-items: center;
-      gap: var(--space-4);
-    }
-
-    .footer-year {
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid var(--line);
       color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
+      transition: color .2s ease;
     }
 
-    @media (min-width: 760px) {
-      .site-header,
-      main,
-      .site-footer {
-        width: min(calc(100% - 64px), var(--content));
+    .contact-item:hover {
+      color: var(--text);
+    }
+
+    .contact-item-left {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .contact-item svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-label {
+      color: var(--faint);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .contact-value {
+      font-size: .78rem;
+      font-weight: 600;
+    }
+
+    .copy-hint {
+      display: none;
+      color: var(--accent);
+      font-size: .64rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    /* ---------------- Footer ---------------- */
+
+    footer {
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      padding: 24px 0;
+    }
+
+    .footer-left {
+      color: var(--faint);
+      font-size: .68rem;
+    }
+
+    .footer-left strong {
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 18px;
+    }
+
+    .footer-socials a {
+      color: var(--faint);
+      font-size: .7rem;
+      font-weight: 650;
+      transition: color .2s ease;
+    }
+
+    .footer-socials a:hover {
+      color: var(--text);
+    }
+
+    /* ---------------- Reveal ---------------- */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity .7s var(--ease),
+        transform .7s var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ---------------- Responsive ---------------- */
+
+    @media (min-width: 700px) {
+      .container {
+        width: min(calc(100% - 64px), var(--max));
+      }
+
+      .desktop-nav {
+        display: flex;
       }
 
       .hero {
-        grid-template-columns: minmax(180px, 250px) 1fr;
-        gap: clamp(40px, 8vw, 120px);
-        align-items: center;
+        padding: 90px 0 110px;
       }
 
-      .hero-meta {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
+      .hero-bottom {
+        grid-template-columns: 1fr auto;
+        gap: 40px;
       }
 
-      .project {
-        grid-template-columns: minmax(280px, 0.85fr) minmax(300px, 1.15fr);
-        gap: clamp(40px, 7vw, 96px);
-        align-items: center;
-      }
-
-      .project-image {
-        order: 2;
-      }
-
-      .project-content {
-        order: 1;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: clamp(40px, 8vw, 120px);
-      }
-    }
-
-    @media (max-width: 759px) {
-      .header-right {
-        gap: 16px;
-      }
-
-      .header-right .socials {
-        display: none;
-      }
-
-      .site-header {
-        min-height: 72px;
-      }
-
-      .hero {
-        padding-block: 64px;
-      }
-
-      .hero-portrait {
-        width: 150px;
-      }
-
-      .section-heading {
-        grid-template-columns: 60px 1fr;
-      }
-
-      .site-footer {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .footer-right {
-        width: 100%;
-        justify-content: space-between;
-      }
-    }
-
-    @media (max-width: 430px) {
-      .nav {
-        gap: 14px;
-      }
-
-      .nav a {
-        font-size: 12px;
-      }
-
-      h1 {
-        font-size: 58px;
+      .scroll-note {
+        display: flex;
       }
 
       .section {
-        padding-block: 64px;
+        padding: 140px 0;
+      }
+
+      .project {
+        grid-template-columns: minmax(0, 1.55fr) minmax(280px, .75fr);
+        gap: 44px;
+        align-items: start;
+      }
+
+      .project-meta {
+        padding-top: 4px;
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr) 310px;
+        gap: 70px;
+      }
+
+      .about-side {
+        align-content: start;
+      }
+
+      .contact-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(280px, .62fr);
+        gap: 80px;
+        align-items: end;
+      }
+
+      .footer-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .header-socials {
+        gap: 2px;
+      }
+
+      .hero-grid {
+        gap: 74px;
+      }
+
+      .hero-bottom {
+        padding-left: 9.5vw;
+      }
+
+      .section-heading {
+        grid-template-columns: 80px 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr) 350px;
+        gap: 110px;
+      }
+
+      .portrait {
+        width: 310px;
+      }
+
+      .copy-hint {
+        display: block;
+      }
+    }
+
+    @media (max-width: 699px) {
+      .header-socials .icon-link:nth-child(2),
+      .header-socials .icon-link:nth-child(3),
+      .header-socials .icon-link:nth-child(4) {
+        display: none;
       }
     }
 
@@ -611,49 +943,64 @@
       *,
       *::before,
       *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
+        animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Aliyu Usman home">Aliyu Usman</a>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Aliyu Usman home">
+        <span class="brand-mark" aria-hidden="true">AU</span>
+        <span>Aliyu Usman</span>
+      </a>
 
-    <div class="header-right">
-      <nav class="nav" aria-label="Main navigation">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#work" data-section="work">Work</a>
+        <a href="#about" data-section="about">About</a>
+        <a href="#contact" data-section="contact">Contact</a>
       </nav>
 
-      <div class="socials" aria-label="Social links">
-        <a class="social-link" href="mailto:hello@aliyu.usman" aria-label="Email Aliyu Usman">
+      <div class="header-socials" aria-label="Social links">
+        <a class="icon-link" href="mailto:hello@aliyu.usman" aria-label="Email Aliyu Usman">
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M2.5 5.5h19v13h-19v-13Zm1.8 1.6 7.7 6 7.7-6H4.3Zm15.9 9.8V9.2l-7.6 5.9a1 1 0 0 1-1.2 0L4.3 9.2v7.7h16.1Z"/>
+            <path d="M3.5 6.5h17v11h-17z"></path>
+            <path d="m4 7 8 6 8-6"></path>
           </svg>
         </a>
 
-        <a class="social-link" href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <a class="icon-link" href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="Aliyu Usman on GitHub">
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2.2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.88c-2.78.6-3.37-1.18-3.37-1.18-.46-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.91.68 1.84v2.73c0 .27.18.58.69.48A10 10 0 0 0 12 2.2Z"/>
+            <path d="M9 19c-4 .9-4-2-5-2m10 4v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6A4.7 4.7 0 0 0 18 6.2 4.4 4.4 0 0 0 17.9 3S16.8 2.7 14.4 4.2a13.5 13.5 0 0 0-4.9 0C7.1 2.7 6 3 6 3a4.4 4.4 0 0 0-.1 3.2A4.7 4.7 0 0 0 4.7 10c0 4.6 2.7 5.7 5.5 6-.6.5-.6 1.1-.5 2V21"></path>
           </svg>
         </a>
 
-        <a class="social-link" href="https://linkedin.com/in/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <a class="icon-link" href="https://linkedin.com/in/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="Aliyu Usman on LinkedIn">
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5.1 3.5a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM3.6 8.4h3v12h-3v-12Zm4.9 0h2.9v1.64h.04c.4-.76 1.39-1.96 3.67-1.96 3.92 0 4.64 2.58 4.64 5.94v6.38h-3v-5.66c0-1.35-.03-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98v5.76h-3v-12Z"/>
+            <path d="M5 8.5V19"></path>
+            <path d="M5 5.2v.1"></path>
+            <path d="M10 19v-6a3 3 0 0 1 6 0v6"></path>
+            <path d="M10 10v9"></path>
+            <path d="M16 19v-5.8"></path>
           </svg>
         </a>
 
-        <a class="social-link" href="https://x.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="X">
+        <a class="icon-link x-icon" href="https://x.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="Aliyu Usman on X">
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4.2 3.5h4.04l4.13 5.52 4.78-5.52h2.63l-6.2 7.16 6.43 8.58h-4.04l-4.37-5.84-5.06 5.84H3.91l6.48-7.48L4.2 3.5Zm2.55 1.8 7.2 12.14h1.79L8.54 5.3H6.75Z"/>
+            <path d="M5 4.5 19 19.5"></path>
+            <path d="M19 4.5 5 19.5"></path>
           </svg>
         </a>
       </div>
@@ -662,96 +1009,118 @@
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-portrait">
-        <div class="portrait-frame">
-          <img
-            src="img/me.jpg"
-            alt="Portrait of Aliyu Usman"
-            id="portrait"
-          >
-          <div class="portrait-placeholder" id="portrait-placeholder" aria-hidden="true">AU</div>
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">
+            <span class="eyebrow-line" aria-hidden="true"></span>
+            Web developer · CS graduate
+          </p>
+
+          <h1 id="hero-title">
+            I make things
+            <span class="outline">for the web.</span>
+          </h1>
         </div>
-      </div>
 
-      <div class="hero-copy">
-        <p class="eyebrow">Computer science graduate / Web developer</p>
-
-        <h1 id="hero-title">Aliyu Usman</h1>
-
-        <p class="hero-sentence">
-          I build websites and small tools. CS grad, currently going deeper into AI and ML.
-        </p>
-
-        <div class="hero-meta">
+        <div class="hero-bottom">
           <div>
-            <span class="meta-label">Based in</span>
-            <span>[city]</span>
-          </div>
+            <p class="hero-copy">
+              <strong>I build websites and small tools.</strong>
+              CS grad, currently going deeper into AI and ML.
+            </p>
 
-          <div>
-            <span class="meta-label">Stack</span>
-            <div class="stack" aria-label="Technology stack">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-              <span>Python</span>
-              <span>PHP</span>
-              <span>SQL</span>
+            <div class="hero-actions" style="margin-top: 24px;">
+              <a class="button primary" href="#work">
+                See my work
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h13"></path>
+                  <path d="m13 6 6 6-6 6"></path>
+                </svg>
+              </a>
+
+              <a class="button" href="#contact">Get in touch</a>
             </div>
           </div>
 
-          <div>
-            <span class="meta-label">Email</span>
-            <button class="email-copy" type="button" data-email="hello@aliyu.usman">
-              <span>hello@aliyu.usman</span>
-              <span class="copy-status" aria-live="polite"></span>
-            </button>
-            <noscript>
-              <a href="mailto:hello@aliyu.usman">Email Aliyu Usman</a>
-            </noscript>
-          </div>
+          <p class="scroll-note">
+            <span aria-hidden="true"></span>
+            Scroll to explore
+          </p>
         </div>
       </div>
     </section>
 
     <section class="section" id="work" aria-labelledby="work-title">
-      <div class="section-heading">
-        <span class="section-number">01 / Work</span>
-        <h2 id="work-title">Selected work</h2>
-      </div>
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-number">01</span>
+          <div>
+            <h2 class="section-title" id="work-title">Selected work</h2>
+            <p class="section-intro">
+              A small project shelf for things I've built. More will live here over time.
+            </p>
+          </div>
+        </div>
 
-      <div class="project-list">
-        <!-- Duplicate this article to add more projects -->
-        <article class="project">
-          <div class="project-image">
-            <div class="project-image-frame">
-              <img
-                src="img/project-1.jpg"
-                alt="Screenshot of Project title"
-                loading="lazy"
-                class="project-screenshot"
-              >
-              <div class="project-placeholder" aria-hidden="true">
-                Project title
-              </div>
+        <!-- Duplicate this block to add more projects -->
+        <article class="project reveal">
+          <div class="project-visual">
+            <img
+              class="project-image"
+              src="img/project-1.jpg"
+              alt="Screenshot of Project title"
+              loading="lazy"
+              onerror="this.style.display='none'; this.nextElementSibling.hidden=false;"
+            >
+
+            <div class="image-placeholder" hidden aria-hidden="true">
+              <span class="placeholder-label">Project title</span>
             </div>
           </div>
 
-          <div class="project-content">
-            <div class="project-topline">
-              <span class="project-stack">HTML / CSS / JS</span>
-              <span class="project-year">2026</span>
+          <div class="project-meta">
+            <div class="project-kicker">
+              <span>Project / 001</span>
+              <span>2026</span>
             </div>
 
-            <a class="project-title" href="#project-title">Project title</a>
+            <div>
+              <h3 class="project-name">Project title</h3>
+              <p class="project-blurb">
+                Short description of what it is and what I built. I’ll replace this.
+              </p>
+            </div>
 
-            <p class="project-blurb">
-              Short description of what it is and what I built. I’ll replace this.
-            </p>
+            <div class="project-details">
+              <div>
+                <span class="detail-label">Stack</span>
+                <div class="stack" aria-label="Project technology stack">
+                  <span>HTML</span>
+                  <span>CSS</span>
+                  <span>JS</span>
+                </div>
+              </div>
 
-            <div class="project-links" aria-label="Project links">
-              <a href="#" aria-label="View Project title live">Live ↗</a>
-              <a href="#" aria-label="View Project title source code">Code ↗</a>
+              <div>
+                <span class="detail-label">Links</span>
+                <div class="project-links">
+                  <a class="text-link" href="#" aria-label="View Project title live">
+                    Live
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M5 19 19 5"></path>
+                      <path d="M9 5h10v10"></path>
+                    </svg>
+                  </a>
+
+                  <a class="text-link" href="#" aria-label="View Project title source code">
+                    Code
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m9 18-6-6 6-6"></path>
+                      <path d="m15 6 6 6-6 6"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </article>
@@ -759,198 +1128,284 @@
     </section>
 
     <section class="section" id="about" aria-labelledby="about-title">
-      <div class="section-heading">
-        <span class="section-number">02 / About</span>
-        <h2 id="about-title">A little about me</h2>
-      </div>
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-number">02</span>
+          <div>
+            <h2 class="section-title" id="about-title">A little about me</h2>
+          </div>
+        </div>
 
-      <div class="about-copy">
-        <p>
-          I’m a computer science graduate who builds for the web.
-          I work mainly with HTML, CSS, JavaScript, Python, PHP, and SQL.
-          I like making useful things that are simple to use and maintain.
-          Right now, I’m learning more about AI and machine learning.
-        </p>
+        <div class="about-grid">
+          <div class="about-main">
+            <p class="about-statement reveal">
+              I like taking an idea, figuring out how it should work,
+              and <em>turning it into something people can actually use.</em>
+            </p>
+
+            <div class="about-copy reveal" style="margin-top: 34px;">
+              <p>
+                I'm a computer science graduate and web developer who enjoys building things from scratch.
+              </p>
+              <p>
+                I work mostly with the web, and I'm comfortable moving between the frontend, backend, and database.
+              </p>
+              <p>
+                Lately, I'm spending more time learning about AI and machine learning and understanding how to build useful tools with them.
+              </p>
+            </div>
+
+            <div class="skills reveal" style="margin-top: 30px;" aria-label="Technologies and interests">
+              <span class="skill">HTML</span>
+              <span class="skill">CSS</span>
+              <span class="skill">JavaScript</span>
+              <span class="skill">Python</span>
+              <span class="skill">PHP</span>
+              <span class="skill">SQL</span>
+              <span class="skill interest">AI / ML · interest</span>
+            </div>
+          </div>
+
+          <div class="about-side reveal">
+            <div class="portrait">
+              <img
+                src="img/me.jpg"
+                alt="Portrait of Aliyu Usman"
+                onerror="this.style.display='none'; this.nextElementSibling.hidden=false;"
+              >
+
+              <div class="portrait-placeholder" hidden aria-hidden="true">
+                <span class="initials">AU</span>
+              </div>
+            </div>
+
+            <p style="color: var(--faint); font-size: .7rem;">
+              Based in [city]
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="contact" aria-labelledby="contact-title">
-      <div class="section-heading">
-        <span class="section-number">03 / Contact</span>
-        <h2 id="contact-title">Get in touch</h2>
-      </div>
-
-      <div class="contact-grid">
-        <div class="contact-lead">
-          Open to internships, junior roles, and small freelance sites.
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-number">03</span>
+          <div>
+            <h2 class="section-title">Contact</h2>
+          </div>
         </div>
 
-        <div class="contact-details">
-          <div>
-            <span class="meta-label">Email</span>
-            <button class="email-copy" type="button" data-email="hello@aliyu.usman">
-              <span>hello@aliyu.usman</span>
-              <span class="copy-status" aria-live="polite"></span>
-            </button>
+        <div class="contact-layout">
+          <div class="reveal">
+            <h2 class="contact-title" id="contact-title">
+              Have something<br>
+              <span>worth building?</span>
+            </h2>
+
+            <p class="contact-description">
+              Open to internships, junior roles, and small freelance sites.
+            </p>
           </div>
 
-          <div>
-            <span class="meta-label">Social</span>
-            <div class="contact-socials">
-              <a href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="Aliyu Usman on GitHub">
-                <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
-                  <path fill="currentColor" d="M12 2.2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.88c-2.78.6-3.37-1.18-3.37-1.18-.46-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.91.68 1.84v2.73c0 .27.18.58.69.48A10 10 0 0 0 12 2.2Z"/>
+          <div class="contact-list reveal">
+            <a
+              class="contact-item"
+              href="mailto:hello@aliyu.usman"
+              data-copy-email="hello@aliyu.usman"
+              aria-label="Email hello@aliyu.usman"
+            >
+              <span class="contact-item-left">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3.5 6.5h17v11h-17z"></path>
+                  <path d="m4 7 8 6 8-6"></path>
                 </svg>
-                GitHub
-              </a>
+                <span>
+                  <span class="contact-label">Email</span>
+                  <span class="contact-value">hello@aliyu.usman</span>
+                </span>
+              </span>
+              <span class="copy-hint">Copy</span>
+            </a>
 
-              <a href="https://linkedin.com/in/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="Aliyu Usman on LinkedIn">
-                <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
-                  <path fill="currentColor" d="M5.1 3.5a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM3.6 8.4h3v12h-3v-12Zm4.9 0h2.9v1.64h.04c.4-.76 1.39-1.96 3.67-1.96 3.92 0 4.64 2.58 4.64 5.94v6.38h-3v-5.66c0-1.35-.03-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98v5.76h-3v-12Z"/>
+            <a
+              class="contact-item"
+              href="https://github.com/USERNAME"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit Aliyu Usman on GitHub"
+            >
+              <span class="contact-item-left">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 19c-4 .9-4-2-5-2m10 4v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6A4.7 4.7 0 0 0 18 6.2 4.4 4.4 0 0 0 17.9 3S16.8 2.7 14.4 4.2a13.5 13.5 0 0 0-4.9 0C7.1 2.7 6 3 6 3a4.4 4.4 0 0 0-.1 3.2A4.7 4.7 0 0 0 4.7 10c0 4.6 2.7 5.7 5.5 6-.6.5-.6 1.1-.5 2V21"></path>
                 </svg>
-                LinkedIn
-              </a>
+                <span>
+                  <span class="contact-label">GitHub</span>
+                  <span class="contact-value">github.com/USERNAME</span>
+                </span>
+              </span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 19 19 5"></path>
+                <path d="M9 5h10v10"></path>
+              </svg>
+            </a>
 
-              <a href="https://x.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="Aliyu Usman on X">
-                <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
-                  <path fill="currentColor" d="M4.2 3.5h4.04l4.13 5.52 4.78-5.52h2.63l-6.2 7.16 6.43 8.58h-4.04l-4.37-5.84-5.06 5.84H3.91l6.48-7.48L4.2 3.5Zm2.55 1.8 7.2 12.14h1.79L8.54 5.3H6.75Z"/>
+            <a
+              class="contact-item"
+              href="https://linkedin.com/in/USERNAME"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit Aliyu Usman on LinkedIn"
+            >
+              <span class="contact-item-left">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 8.5V19"></path>
+                  <path d="M5 5.2v.1"></path>
+                  <path d="M10 19v-6a3 3 0 0 1 6 0v6"></path>
+                  <path d="M10 10v9"></path>
+                  <path d="M16 19v-5.8"></path>
                 </svg>
-                X
-              </a>
+                <span>
+                  <span class="contact-label">LinkedIn</span>
+                  <span class="contact-value">linkedin.com/in/USERNAME</span>
+                </span>
+              </span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 19 19 5"></path>
+                <path d="M9 5h10v10"></path>
+              </svg>
+            </a>
 
-              <a href="mailto:hello@aliyu.usman" aria-label="Email Aliyu Usman">
-                <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
-                  <path fill="currentColor" d="M2.5 5.5h19v13h-19v-13Zm1.8 1.6 7.7 6 7.7-6H4.3Zm15.9 9.8V9.2l-7.6 5.9a1 1 0 0 1-1.2 0L4.3 9.2v7.7h16.1Z"/>
+            <a
+              class="contact-item"
+              href="https://x.com/USERNAME"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit Aliyu Usman on X"
+            >
+              <span class="contact-item-left">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 4.5 19 19.5"></path>
+                  <path d="M19 4.5 5 19.5"></path>
                 </svg>
-                Email
-              </a>
-            </div>
+                <span>
+                  <span class="contact-label">X</span>
+                  <span class="contact-value">x.com/USERNAME</span>
+                </span>
+              </span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 19 19 5"></path>
+                <path d="M9 5h10v10"></path>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <a class="footer-name" href="#top">Aliyu Usman</a>
+  <footer>
+    <div class="container footer-inner">
+      <p class="footer-left">
+        © <span id="year">2026</span> <strong>Aliyu Usman</strong>. Built with HTML, CSS & JS.
+      </p>
 
-    <div class="footer-right">
-      <span class="footer-year">© 2026</span>
-
-      <div class="socials" aria-label="Footer social links">
-        <a class="social-link" href="mailto:hello@aliyu.usman" aria-label="Email Aliyu Usman">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M2.5 5.5h19v13h-19v-13Zm1.8 1.6 7.7 6 7.7-6H4.3Zm15.9 9.8V9.2l-7.6 5.9a1 1 0 0 1-1.2 0L4.3 9.2v7.7h16.1Z"/>
-          </svg>
-        </a>
-
-        <a class="social-link" href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2.2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.88c-2.78.6-3.37-1.18-3.37-1.18-.46-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.91.68 1.84v2.73c0 .27.18.58.69.48A10 10 0 0 0 12 2.2Z"/>
-          </svg>
-        </a>
-
-        <a class="social-link" href="https://linkedin.com/in/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5.1 3.5a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM3.6 8.4h3v12h-3v-12Zm4.9 0h2.9v1.64h.04c.4-.76 1.39-1.96 3.67-1.96 3.92 0 4.64 2.58 4.64 5.94v6.38h-3v-5.66c0-1.35-.03-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98v5.76h-3v-12Z"/>
-          </svg>
-        </a>
-
-        <a class="social-link" href="https://x.com/USERNAME" target="_blank" rel="noopener noreferrer" aria-label="X">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4.2 3.5h4.04l4.13 5.52 4.78-5.52h2.63l-6.2 7.16 6.43 8.58h-4.04l-4.37-5.84-5.06 5.84H3.91l6.48-7.48L4.2 3.5Zm2.55 1.8 7.2 12.14h1.79L8.54 5.3H6.75Z"/>
-          </svg>
-        </a>
-      </div>
+      <nav class="footer-socials" aria-label="Footer social links">
+        <a href="mailto:hello@aliyu.usman">Email</a>
+        <a href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/USERNAME" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://x.com/USERNAME" target="_blank" rel="noopener noreferrer">X</a>
+      </nav>
     </div>
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const navLinks = [...document.querySelectorAll(".nav a")];
-      const sections = navLinks
-        .map(link => document.querySelector(link.getAttribute("href")))
-        .filter(Boolean);
+    (() => {
+      const header = document.getElementById("site-header");
+      const year = document.getElementById("year");
+      const navLinks = [...document.querySelectorAll(".desktop-nav a[data-section]")];
+      const sections = [...document.querySelectorAll("main section[id]")];
+      const revealItems = [...document.querySelectorAll(".reveal")];
+      const emailLink = document.querySelector("[data-copy-email]");
 
-      // Highlight the current section in the navigation.
-      const updateActiveNav = () => {
-        const marker = window.scrollY + window.innerHeight * 0.35;
-        let currentId = sections[0]?.id;
-
-        sections.forEach(section => {
-          if (section.offsetTop <= marker) {
-            currentId = section.id;
-          }
-        });
-
-        navLinks.forEach(link => {
-          const isActive = link.getAttribute("href") === `#${currentId}`;
-          link.classList.toggle("is-active", isActive);
-          if (isActive) {
-            link.setAttribute("aria-current", "page");
-          } else {
-            link.removeAttribute("aria-current");
-          }
-        });
+      /* Header depth on scroll */
+      const updateHeader = () => {
+        header.classList.toggle("scrolled", window.scrollY > 12);
       };
 
-      window.addEventListener("scroll", updateActiveNav, { passive: true });
-      window.addEventListener("resize", updateActiveNav);
-      updateActiveNav();
+      updateHeader();
+      window.addEventListener("scroll", updateHeader, { passive: true });
 
-      // Copy email while keeping the visible address as a normal mailto fallback.
-      const emailButtons = document.querySelectorAll(".email-copy");
+      /* Keep copyright current */
+      year.textContent = new Date().getFullYear();
 
-      emailButtons.forEach(button => {
-        button.addEventListener("click", async () => {
-          const email = button.dataset.email;
-          const status = button.querySelector(".copy-status");
+      /* Current section navigation */
+      if ("IntersectionObserver" in window) {
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
 
-          try {
-            await navigator.clipboard.writeText(email);
-            status.textContent = "Copied";
-          } catch {
-            window.location.href = `mailto:${email}`;
-            return;
+              navLinks.forEach((link) => {
+                link.classList.toggle(
+                  "active",
+                  link.dataset.section === entry.target.id
+                );
+              });
+            });
+          },
+          {
+            rootMargin: "-35% 0px -55% 0px",
+            threshold: 0
           }
+        );
 
-          window.setTimeout(() => {
-            status.textContent = "";
-          }, 1800);
-        });
-      });
+        sections.forEach((section) => sectionObserver.observe(section));
 
-      // Replace missing portrait with the requested initials placeholder.
-      const portrait = document.getElementById("portrait");
-      const portraitPlaceholder = document.getElementById("portrait-placeholder");
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
 
-      const showPortraitPlaceholder = () => {
-        portrait.style.display = "none";
-        portraitPlaceholder.style.display = "flex";
-      };
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            rootMargin: "0px 0px -8% 0px",
+            threshold: 0.08
+          }
+        );
 
-      portrait.addEventListener("error", showPortraitPlaceholder);
-
-      if (portrait.complete && portrait.naturalWidth === 0) {
-        showPortraitPlaceholder();
+        revealItems.forEach((item) => revealObserver.observe(item));
+      } else {
+        revealItems.forEach((item) => item.classList.add("visible"));
       }
 
-      // Replace a missing project screenshot without showing a broken-image icon.
-      document.querySelectorAll(".project-screenshot").forEach(image => {
-        const placeholder = image.parentElement.querySelector(".project-placeholder");
+      /* Email click-to-copy.
+         Normal mailto behavior is preserved if clipboard access is unavailable. */
+      if (emailLink) {
+        emailLink.addEventListener("click", async (event) => {
+          if (!navigator.clipboard) return;
 
-        const showProjectPlaceholder = () => {
-          image.style.display = "none";
-          placeholder.style.display = "flex";
-        };
+          try {
+            await navigator.clipboard.writeText(emailLink.dataset.copyEmail);
 
-        image.addEventListener("error", showProjectPlaceholder);
+            const hint = emailLink.querySelector(".copy-hint");
+            if (!hint) return;
 
-        if (image.complete && image.naturalWidth === 0) {
-          showProjectPlaceholder();
-        }
-      });
-    });
+            const original = hint.textContent;
+            hint.textContent = "Copied";
+
+            window.setTimeout(() => {
+              hint.textContent = original;
+            }, 1400);
+          } catch {
+            /* Keep normal mailto behavior when copying is unavailable. */
+          }
+        });
+      }
+    })();
   </script>
 </body>
 </html>
