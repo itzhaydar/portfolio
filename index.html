@@ -976,6 +976,12 @@
       </nav>
 
       <div class="header-socials" aria-label="Social links">
+        <a class="icon-link" href="https://wa.me/+2349061677114" target="_blank" rel="noopener noreferrer" aria-label="Chat with Aliyu Usman on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20 11.5a8 8 0 0 1-11.9 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"></path>
+    <path d="M9 8.5c.2-.4.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.6.7c.7 1.2 1.5 2 2.7 2.6l.7-.6c.2-.2.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.1.6-.5.8-.5.3-1.2.4-1.9.2-2.2-.6-4.7-3.1-5.3-5.3-.2-.7-.1-1.4.2-1.9Z"></path>
+  </svg>
+</a>
         <a class="icon-link" href="mailto:aliyuusman4109@gmail.com" aria-label="Email Aliyu Usman">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M3.5 6.5h17v11h-17z"></path>
@@ -1364,6 +1370,28 @@
 
           <div class="contact-list reveal">
             <a
+  class="contact-item"
+  href="https://wa.me/+2349061677114"
+  target="_blank"
+  rel="noopener noreferrer"
+  data-copy-whatsapp="+2349061677114"
+  aria-label="Chat with Aliyu Usman on WhatsApp"
+>
+  <span class="contact-item-left">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20 11.5a8 8 0 0 1-11.9 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"></path>
+      <path d="M9 8.5c.2-.4.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.6.7c.7 1.2 1.5 2 2.7 2.6l.7-.6c.2-.2.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.1.6-.5.8-.5.3-1.2.4-1.9.2-2.2-.6-4.7-3.1-5.3-5.3-.2-.7-.1-1.4.2-1.9Z"></path>
+    </svg>
+
+    <span>
+      <span class="contact-label">WhatsApp</span>
+      <span class="contact-value">+2349061677114</span>
+    </span>
+  </span>
+
+  <span class="copy-hint">Copy</span>
+</a>
+            <a
               class="contact-item"
               href="mailto:aliyuusman4109@gmail.com"
               data-copy-email="aliyuusman4109@gmail.com"
@@ -1374,6 +1402,7 @@
                   <path d="M3.5 6.5h17v11h-17z"></path>
                   <path d="m4 7 8 6 8-6"></path>
                 </svg>
+                
                 <span>
                   <span class="contact-label">Email</span>
                   <span class="contact-value">aliyuusman4109@gmail.com</span>
@@ -1481,6 +1510,7 @@
       const sections = [...document.querySelectorAll("main section[id]")];
       const revealItems = [...document.querySelectorAll(".reveal")];
       const emailLink = document.querySelector("[data-copy-email]");
+      const whatsappLink = document.querySelector("[data-copy-whatsapp]");
 
       /* Header depth on scroll */
       const updateHeader = () => {
@@ -1560,6 +1590,31 @@
         });
       }
     })();
+
+    /* WhatsApp click-to-copy */
+if (whatsappLink) {
+  whatsappLink.addEventListener("click", async (event) => {
+    if (!navigator.clipboard) return;
+
+    try {
+      await navigator.clipboard.writeText(
+        whatsappLink.dataset.copyWhatsapp
+      );
+
+      const hint = whatsappLink.querySelector(".copy-hint");
+      if (!hint) return;
+
+      const original = hint.textContent;
+      hint.textContent = "Copied";
+
+      window.setTimeout(() => {
+        hint.textContent = original;
+      }, 1400);
+    } catch {
+      /* Keep normal WhatsApp behavior when copying is unavailable. */
+    }
+  });
+}
   </script>
 </body>
 </html>
