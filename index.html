@@ -5,10 +5,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="img/Aliyu.jpg">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aliyu Usman is a computer science graduate and web developer building websites and tools while going deeper into AI and machine learning.">
+  <meta name="description" content="Aliyu Usman is a Fullstack Developer building responsive websites, WordPress solutions, and web applications.">
   <meta name="theme-color" content="#10110f">
   <meta name="color-scheme" content="dark light">
-  <title>Aliyu Usman — Web Developer</title>
+  <title>Aliyu Usman — Fullstack Developer</title>
 
   <style>
     :root {
@@ -969,6 +969,93 @@
     .project + .project {
   margin-top: 100px;
 }
+
+    /* Editorial CV: white paper against the original charcoal portfolio */
+    .cv-section {padding-bottom:130px}
+    .cv-shell {max-width:930px;margin:0 auto}
+    .cv-toolbar {display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:24px}
+    .cv-toolbar p {font-size:.76rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+    .cv-paper {position:relative;background:#fffefa;color:#19231d;padding:clamp(25px,6vw,70px);box-shadow:0 35px 95px rgba(0,0,0,.34);border-radius:2px;overflow:hidden}
+    .cv-paper:before {content:'';position:absolute;inset:0 auto 0 0;width:7px;background:#c7f36b}
+    .cv-kicker {display:flex;justify-content:space-between;gap:12px;color:#647063;font-size:.65rem;font-weight:750;letter-spacing:.19em;text-transform:uppercase;margin-bottom:24px}
+    .cv-paper-head {display:flex;justify-content:space-between;align-items:center;gap:25px;padding-bottom:25px}
+    .cv-paper h3 {font-size:clamp(2.6rem,6.8vw,5.3rem);font-weight:800;line-height:.9;letter-spacing:-.085em;color:#16221a}
+    .cv-role {font-size:.91rem;font-weight:750;letter-spacing:.16em;margin-top:19px;text-transform:uppercase;color:#536b42}
+    .cv-photo-wrap {padding:7px;border:1px solid #d6ddd2;transform:rotate(2deg);flex-shrink:0}
+    .cv-photo {display:block;width:108px;height:132px;object-fit:cover;background:#e5e9e0;filter:grayscale(12%)}
+    .cv-contact {display:flex;flex-wrap:wrap;gap:9px 21px;padding:18px 0;border-top:2px solid #19231d;border-bottom:1px solid #dce2d7;color:#49564c;font-size:.74rem;overflow-wrap:anywhere}
+    .cv-contact a {color:inherit;text-decoration:none}.cv-contact a:hover{text-decoration:underline}
+    .cv-statement {padding:25px 0 27px;border-bottom:1px solid #dce2d7}
+    .cv-statement p {font-size:clamp(.96rem,1.5vw,1.13rem);line-height:1.68;color:#354338;max-width:740px}
+    .cv-paper-grid {display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:clamp(25px,5vw,55px);padding-top:31px}
+    .cv-block {margin-bottom:29px}.cv-block h4 {display:flex;align-items:center;gap:11px;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#486438;font-weight:800;margin:0 0 17px}
+    .cv-block h4:after {content:'';height:1px;background:#d9e1d4;flex:1}
+    .cv-block p,.cv-block li {font-size:.82rem;line-height:1.65;color:#4b564d}
+    .cv-item {padding:0 0 17px;margin:0 0 16px;border-bottom:1px solid #e6eae3}.cv-item:last-child{border:0;margin-bottom:0}
+    .cv-item-title {font-size:.94rem!important;font-weight:800;color:#18251a!important;line-height:1.35!important;margin-bottom:4px!important}
+    .cv-item-meta {font-size:.66rem!important;text-transform:uppercase;letter-spacing:.11em;color:#6d7c68!important;margin-bottom:6px!important;font-weight:700}
+    .cv-item a {color:#385c28;text-decoration:underline;text-underline-offset:2px}
+    .cv-honor {background:#eff5e9;border-left:3px solid #71934e;padding:12px 14px;margin-top:14px}
+    .cv-honor strong {display:block;color:#253b23;font-size:.78rem}.cv-honor span{display:block;color:#53654c;font-size:.73rem;line-height:1.5;margin-top:4px}
+    .cv-stack-group {margin-bottom:15px}.cv-stack-group strong {display:block;font-size:.72rem;color:#253b23;margin-bottom:5px}
+    .cv-stack-group p {font-size:.78rem;line-height:1.7}
+    .cv-paper-foot {border-top:1px solid #dce2d7;margin-top:12px;padding-top:14px;display:flex;justify-content:space-between;gap:12px;font-size:.63rem;letter-spacing:.11em;text-transform:uppercase;color:#798678}
+    @media(max-width:660px){.cv-paper-grid{grid-template-columns:1fr;gap:0}.cv-photo{width:76px;height:96px}.cv-paper-head{align-items:flex-start}.cv-paper h3{font-size:clamp(2.7rem,11vw,4.6rem)}.cv-kicker{font-size:.56rem}.cv-contact{font-size:.7rem}.cv-role{font-size:.7rem;letter-spacing:.1em}}
+    @media print{.site-header,.hero,#projects,#Projects,#about,#contact,footer,.cv-section>.container>.section-heading,.cv-toolbar{display:none!important}body,.cv-section{background:white!important;padding:0!important}.cv-paper{box-shadow:none!important;padding:12mm!important}.cv-shell{max-width:none}.cv-block,.cv-item{break-inside:avoid}}
+
+
+    /* CV responsive polish: preserve editorial desktop paper; optimize handheld reading. */
+    .cv-section .container,.cv-shell,.cv-paper,.cv-paper-grid,.cv-paper-grid>div{min-width:0}
+    .cv-paper{isolation:isolate}
+    .cv-contact a,.cv-item a{overflow-wrap:anywhere;word-break:normal}
+    .cv-download{min-height:46px;display:inline-flex;align-items:center;justify-content:center;text-align:center}
+    .cv-item a{display:inline-block;min-height:26px;line-height:26px;text-underline-offset:3px}
+    @media (min-width:661px) and (max-width:900px){
+      .cv-paper{padding:clamp(28px,4.2vw,48px)}
+      .cv-paper-grid{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px}
+      .cv-paper h3{font-size:clamp(3rem,7vw,4.6rem)}
+      .cv-photo{width:90px;height:112px}
+    }
+    @media (max-width:660px){
+      .cv-section{padding-bottom:75px}
+      .cv-shell{width:100%;max-width:100%}
+      .cv-toolbar{align-items:stretch;gap:12px;margin-bottom:14px}
+      .cv-toolbar p{font-size:.64rem;line-height:1.6;letter-spacing:.08em}
+      .cv-download{width:100%;min-height:49px;font-size:.88rem}
+      .cv-paper{padding:28px 22px 24px;border-radius:8px;box-shadow:0 15px 44px rgba(0,0,0,.24)}
+      .cv-paper:before{width:4px}
+      .cv-kicker{gap:8px;margin-bottom:22px;letter-spacing:.08em;font-size:.59rem;flex-wrap:wrap;line-height:1.5}
+      .cv-paper-head{gap:12px;padding-bottom:21px;align-items:center}
+      .cv-paper h3{font-size:clamp(2.5rem,11.5vw,4rem);line-height:.96;letter-spacing:-.065em}
+      .cv-role{margin-top:12px;font-size:.65rem;letter-spacing:.075em;line-height:1.45}
+      .cv-photo-wrap{padding:4px;transform:none;border-radius:5px}
+      .cv-photo{width:clamp(62px,18vw,88px);height:clamp(78px,23vw,110px);border-radius:2px}
+      .cv-contact{display:grid;grid-template-columns:minmax(0,1fr);gap:7px;padding:15px 0;font-size:.8rem;line-height:1.5}
+      .cv-contact a{width:fit-content;max-width:100%;padding:2px 0}
+      .cv-statement{padding:19px 0 20px}
+      .cv-statement p{font-size:.94rem;line-height:1.62}
+      .cv-paper-grid{display:flex;flex-direction:column;gap:0;padding-top:24px}
+      .cv-block{margin-bottom:24px}
+      .cv-block h4{font-size:.71rem;letter-spacing:.11em;gap:8px;margin-bottom:13px}
+      .cv-block p,.cv-block li{font-size:.88rem;line-height:1.65}
+      .cv-item{margin-bottom:17px;padding-bottom:17px}
+      .cv-item-title{font-size:1rem!important;line-height:1.4!important}
+      .cv-item-meta{font-size:.69rem!important;line-height:1.5;letter-spacing:.06em}
+      .cv-honor{padding:12px 13px}
+      .cv-stack-group{margin-bottom:15px}
+      .cv-stack-group strong{font-size:.79rem}
+      .cv-stack-group p{font-size:.86rem}
+      .cv-paper-foot{display:flex;flex-direction:column;gap:5px;font-size:.58rem;letter-spacing:.07em}
+    }
+    @media (max-width:370px){
+      .cv-paper{padding:24px 16px 22px}
+      .cv-paper h3{font-size:clamp(2.15rem,10.6vw,2.8rem)}
+      .cv-photo{width:58px;height:75px}
+      .cv-kicker{font-size:.53rem}
+      .cv-contact{font-size:.76rem}
+    }
+    @media (prefers-reduced-motion:reduce){.cv-section .reveal{transition:none!important}}
+
   </style>
 </head>
 
@@ -986,6 +1073,7 @@
         <a href="#Projects" data-section="Projects">Projects</a>
         <a href="#about" data-section="about">About</a>
         <a href="#contact" data-section="contact">Contact</a>
+        <a href="#cv" data-section="cv">CV</a>
       </nav>
 
       <div class="header-socials" aria-label="Social links">
@@ -1034,7 +1122,7 @@
         <div>
           <p class="eyebrow">
             <span class="eyebrow-line" aria-hidden="true"></span>
-            Web developer · CS graduate
+            Fullstack Developer · Computer Science Graduate
           </p>
 
           <h1 id="hero-title">
@@ -1047,7 +1135,7 @@
           <div>
             <p class="hero-copy">
               <strong>I build websites and web apps.</strong>
-              CS grad, currently going deeper into AI and ML.
+              I work across frontend, backend, databases, and WordPress to turn ideas into practical digital experiences.
             </p>
 
             <div class="hero-actions" style="margin-top: 24px;">
@@ -1060,6 +1148,7 @@
               </a>
 
               <a class="button" href="#contact">Get in touch</a>
+              <a class="button" href="#cv">View my CV ↗</a>
             </div>
           </div>
 
@@ -1415,24 +1504,31 @@
 
             <div class="about-copy reveal" style="margin-top: 34px;">
               <p>
-                I'm a computer science graduate and web developer who enjoys building things from scratch.
+                I'm a Computer Science graduate and Fullstack Developer who enjoys building useful websites and applications from scratch.
               </p>
               <p>
                 I work mostly with the web, and I'm comfortable moving between the frontend, backend, and database.
               </p>
               <p>
-                Lately, I'm spending more time learning about AI and machine learning and understanding how to build useful tools with them.
+                My work covers custom-coded web development and WordPress development, with a focus on responsive, reliable experiences.
               </p>
             </div>
 
-            <div class="skills reveal" style="margin-top: 30px;" aria-label="Technologies and interests">
+            <div class="skills reveal" style="margin-top: 30px;" aria-label="Technologies and development skills">
               <span class="skill">HTML</span>
               <span class="skill">CSS</span>
               <span class="skill">JavaScript</span>
               <span class="skill">Python</span>
               <span class="skill">PHP</span>
               <span class="skill">SQL</span>
-              <span class="skill interest">AI / ML · interest</span>
+              <span class="skill">React</span>
+                <span class="skill">Node.js</span>
+                <span class="skill">WordPress</span>
+                <span class="skill">MySQL</span>
+                <span class="skill">Git</span>
+                <span class="skill">Responsive Design</span>
+                <span class="skill">Custom-coded Web Development</span>
+                <span class="skill">WordPress Development</span>
             </div>
           </div>
 
@@ -1474,7 +1570,7 @@
             </h2>
 
             <p class="contact-description">
-              Open to internships, web development projects, collabs, and freelance roles.
+              Open to fullstack and WordPress development roles, freelance projects, and collaborations.
             </p>
           </div>
 
@@ -1595,6 +1691,63 @@
         </div>
       </div>
     </section>
+
+    <section class="section cv-section" id="cv" aria-labelledby="cv-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-number">04/</span>
+          <div><h2 class="section-title" id="cv-title">Curriculum Vitae</h2>
+            <p class="section-intro">A clean, editorial look at what I build and the skills behind it.</p></div>
+        </div>
+        <div class="cv-shell reveal">
+          <div class="cv-toolbar"><p>Professional profile / A4 edition</p>
+            <a class="button primary cv-download" href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCA3IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9QYWdlTW9kZSAvVXNlTm9uZSAvUGFnZXMgNyAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0F1dGhvciAoQWxpeXUgVXNtYW4pIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjEwMTIxOTE0MzcrMDAnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjEwMTIxOTE0MzcrMDAnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKEFsaXl1IFVzbWFuIHwgRnVsbHN0YWNrIERldmVsb3BlciBDVikgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNCAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjggMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMTg1NQo+PgpzdHJlYW0KR2F1MERnTicmWSY6TzpTb01gbigsZzlQdTpYU0g6SFdSWV8jNEdVU0QkMig/P0MybGk9QWBmdDUhO0gmblFMciUnZSouPmdHIiZlcXQoPSJGU20kTEohOXRdJSxrWjFKNzFkUyFsTlQqI1xQZ3RjaSxzXXArJS5qbyxRJ3JecWZLSUpaYUBwKl44LnNocFgvITFyRjtyZj49OjtFOiFaP2FWak1cKjVwZFQpMl4qS0c8Y2I7WTY6QCs7bXJnZF48P2xfJ3VDMV1Jb0FcS2k6ISVAPkFqa1c5R0U+OEQwJylIIyYnbE4pOmlUPmVyc0svWUJAMGRfOi87Ny8tcSQrY1MxcjxTXXA1U2FeIzhTayI+XWNpT15NakVfUEBrN2hmbCZZNXI+OSVZPV9RQiUuW0EpP1dqWj0lW1xrZC8/MWxOM0g5PjZqPm02R0xOazZmM0woOCdQZU9EaFJkPiovSnU9MUA3ITIvbCpMR2xIWC1cSlFzPF1jIm5AMmRKKEEtTFA2MF49Ti43YFtqMT5Rb3E6WVdGPy9JakhIdDB1WDFDa0JAUktGTDZvXV0qKGgtSFdCSEIvTCRKWVA1Y1lJNytKR1NAcC9DXj1dSS5UPnIxQl1YI0FfYUtFcHEvZDVQZkNSYlUlK044aENzcDAvUU4lIlM0JE9VU0FqLzwhZ1RfXEw8OmReb2RvKUBtNCxpREs5Z3FlYis/WUNAYVJWc183MV8yciw3NyIuaWVnODY7KmclTDRGcipNXF9uY1xVcC1ROVAiQWpOaTB1LlMiWzRCLydQU2oyMCdMaCkxNi91LzhFMDFmNGpXWFUrRjBRYUx0IXE0XC1EJDZQJlYyIjtTbGpCI15kLmlWZ2ZxcylHKDVTVV9pK2JBZUBVQ008TkomLHBhbiQvNGlEVmhKJjBOMCF1STxgRCJqVkYrX1NOMSgjQz1qaypAUig7LF5Ebl9HT0RRSEFdWlppI1JNUylJWGwyODlaKyNrYjg0ZUAmPylobSRtZ1xbPmg/KDQ4WCIscztPQzM9Vl43am0lNSE6b1pbQykjWT0kYi1lMURwLjEqdFZBX0s6bWlHKzooTzhWNG0zZSgoOnIwQ3ROZWloVzJhb2REQU45JDQ/S1M+XjBETVUzaEI6bT5OcyhjQzknSVFMaVo+MkwvVlsiTFgtYTNoNTpgSVtYPGNqMEdKVllaN21yWmpVKC84XEhqR1E2OyYsVT1iOC1tclhOaTZjPENoRi9mRTZbVFJjWjt1OSVhc2NiWUohKlMzKTI4LDlsK1NPZVJUTVA4N1BKcE9qR3NDUDAqUG4/SEglNyknZE5vbElDM01ANDMyVW82MGFQWj08NVUvJE4jPVdLM2ZFIWA3MCNcUEgwXDk+PS9WZUcqamdbZTUpUlo4YHNUcz8ucSw7TkgzJjNPby1sJ2dJTGsjSFhebGJPdFRITFFiUlAkTEM+YHVec1tnUDdzKyhDdClMWV5UbzcjOShfVCwtLF4hQ1JNIk5AKFo3QSQvZSYncl9zLCYjJDtYTUsuY01rT3FQWUIoUj5objBcKVIqLCZRQDxnWmc3YmtJY2xOPUBFJlhkOVY1VlQhal91bCE0TVgyPUwiOSFqUlAyPEZFJ0kkYHFPSiw2KVdmazlRYD9SXGdsUWkxX0lxUVM7SDMpXU9zKWFYc1NeSlcwbFM4bFM7c14oc1VTSzlOTGRiUDgjcCNqNkg0QCRgQTckUmRHUVUsPylOJ1taLF4hbm0uVydCODkkU21qSWgqdDpVKChMJ0ZSUnBHIy40JD1IT006cFlMRCtnVzFbMzNuKFs9Z0UhTDtoS2RxI1FkSFIkIT9IIXEmKSIyQ3JmZmdPbWdfYEFoK2JXWypyQj1AK25LIWY7Jy5LZjJcSVItSHIrZEgrajQhVDNST0BpRl8mKkhqTEQ4NHM4VV1DJmFfLSw/T0BWIWwtYTZyZitUJyEmXVs9SVYnV1I4MCpVUXFgPXEkMi9fdE1cYCUwW3AqMTtXbFgkT2BfWV87PF84Iz0xai5USmhtZF5hTE1xSy5RVkRjYyktdScpTylZIig1JSE/M2haQT1ERk5fVD9pQ1ImNFFzVT5lOURSUFNmb0ZZM1FdOl51QzRVaz1cSkRnX18mJEAqWmMsOT5WLVhrNiVbPEN0LGJsO1VIcmpLWy1TSTQtQiNoOjROc2lFQDxZSWYwRlI2aEYqJSU7NUxZY3E1bU1fcz04VytZZk04WzZNJDxRMSpGXz9eYj5HdT5raD4vaEQqaF8pKzJpZiRRaF4rSVlMVnBWYWBpciVdOkYiQFRBRkwkWWUrZTJwRCU9c1FnW0ZIP3BqU1IvQWNLVTRBb1xqLUY/WzlTJkt1bVU4ZTpvbmRvXkldSVk4dSdPKyhcc1J0Yl4rUCxSUU8nb0NIKlZfODFSTVYhaCw4YUUsI3IqW21UZj5ORyltKTxVb1QrbSdlSWZaKyg3bkV+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDkKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMDIgMDAwMDAgbiAKMDAwMDAwMDIwOSAwMDAwMCBuIAowMDAwMDAwMzIxIDAwMDAwIG4gCjAwMDAwMDA1MjQgMDAwMDAgbiAKMDAwMDAwMDU5MiAwMDAwMCBuIAowMDAwMDAwODkzIDAwMDAwIG4gCjAwMDAwMDA5NTIgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8NGMwZGM2NzJjZjdkOTgxNGI2MDQ3ZDBhYTAyNmQ3MTk+PDRjMGRjNjcyY2Y3ZDk4MTRiNjA0N2QwYWEwMjZkNzE5Pl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA2IDAgUgovUm9vdCA1IDAgUgovU2l6ZSA5Cj4+CnN0YXJ0eHJlZgoyODk4CiUlRU9GCg==" download="Aliyu_Usman_CV.pdf" aria-label="Download Aliyu Usman CV as PDF">Download CV ↓</a></div>
+          <article class="cv-paper" aria-label="Aliyu Usman curriculum vitae">
+            <div class="cv-kicker"><span>Curriculum Vitae / 2026</span><span>Developer · Nigeria</span></div>
+            <div class="cv-paper-head">
+              <div><h3>Aliyu<br>Usman<span style="color:#82a45d">.</span></h3><p class="cv-role">Fullstack Developer</p></div>
+              <div class="cv-photo-wrap"><img class="cv-photo" src="img/Aliyu.jpg" alt="Portrait of Aliyu Usman" onerror="this.parentElement.style.display='none'"></div>
+            </div>
+            <div class="cv-contact">
+              <a href="mailto:aliyuusman4109@gmail.com">aliyuusman4109@gmail.com</a>
+              <span>+234 906 167 7114</span>
+              <span>Age: 25</span>
+              <a href="https://github.com/itzhaydar" target="_blank" rel="noopener noreferrer">github.com/itzhaydar</a>
+              <a href="https://linkedin.com/in/itzhaydar" target="_blank" rel="noopener noreferrer">linkedin.com/in/itzhaydar</a>
+            </div>
+            <div class="cv-statement"><p>Fullstack Developer and Computer Science graduate creating responsive websites, WordPress solutions, and interactive web applications. I combine clean frontend experiences with practical backend and database development.</p></div>
+            <div class="cv-paper-grid">
+              <div>
+                <div class="cv-block"><h4>01 / Selected Projects</h4>
+                  <div class="cv-item"><p class="cv-item-title">MARSHOUT</p><p class="cv-item-meta">Interactive 3D web experience · React / TypeScript / Three.js</p><p>Created a GTA-inspired web experience featuring an interactive boulevard, a custom flyer studio, aircraft painting, and 3D journeys. <a href="https://marshout.vercel.app" target="_blank" rel="noopener noreferrer">View live project ↗</a> · <a href="https://github.com/itzhaydar/plane-gta/" target="_blank" rel="noopener noreferrer">Source code ↗</a></p></div>
+                  <div class="cv-item"><p class="cv-item-title">VoteNaija Help Center</p><p class="cv-item-meta">WordPress / Content experience</p><p>Built a WordPress-powered help center supporting voting event organisers and voters. <a href="https://votenaija.com.ng/" target="_blank" rel="noopener noreferrer">View live project ↗</a></p></div>
+                  <div class="cv-item"><p class="cv-item-title">Motion Watch</p><p class="cv-item-meta">Browser utility · HTML / CSS / JavaScript</p><p>Developed a browser-based motion detection tool. <a href="https://itzhaydar.github.io/js-ai-projects/motion.html" target="_blank" rel="noopener noreferrer">View live project ↗</a> · <a href="https://github.com/itzhaydar/js-ai-projects/motion.html" target="_blank" rel="noopener noreferrer">Source code ↗</a></p></div>
+                  <div class="cv-item"><p class="cv-item-title">On-Device-OCR-PDF</p><p class="cv-item-meta">Web utility · In-browser document processing</p><p>Built a tool for turning photographed or scanned pages into searchable PDFs in the browser. <a href="https://itzhaydar.github.io/pagewell/" target="_blank" rel="noopener noreferrer">View live project ↗</a> · <a href="https://github.com/itzhaydar/pagewell" target="_blank" rel="noopener noreferrer">Source code ↗</a></p></div>
+                </div>
+                <div class="cv-block"><h4>02 / Development Focus</h4><p>Custom-coded web development, WordPress development, responsive interfaces, backend functionality, and database-backed applications.</p></div>
+              </div>
+              <div>
+                <div class="cv-block"><h4>03 / Education</h4>
+                  <p class="cv-item-title">B.Sc. Computer Science</p>
+                  <p>Sule Lamido University<br>Kafin Hausa, Jigawa State</p>
+                  <p style="margin-top:8px"><strong style="color:#263a27">CGPA: 4.83</strong></p>
+                  <div class="cv-honor"><strong>Best Graduating Student</strong><span>Faculty of Computing</span></div>
+                  <p style="margin-top:14px" class="cv-item-title">Leadership</p>
+                  <p><strong>President, Faculty of Computing</strong><br>August 2025 – August 2026</p>
+                </div>
+                <div class="cv-block"><h4>04 / Technical Skills</h4>
+                  <div class="cv-stack-group"><strong>Languages &amp; fundamentals</strong><p>HTML, CSS, JavaScript, TypeScript, PHP, Python, SQL, MySQL</p></div>
+                  <div class="cv-stack-group"><strong>Frameworks &amp; platforms</strong><p>React, Node.js, WordPress, Vite, Three.js, React Three Fiber, Zustand, Tesseract.js</p></div>
+                  <div class="cv-stack-group"><strong>Practices &amp; tools</strong><p>Git, Responsive Design, Custom Web Development, WordPress Development</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="cv-paper-foot"><span>Aliyu Usman / Fullstack Developer</span><span>Selected work &amp; credentials</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
