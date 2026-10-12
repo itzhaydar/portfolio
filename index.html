@@ -1055,7 +1055,10 @@
     }
     @media (prefers-reduced-motion:reduce){.cv-section .reveal{transition:none!important}}
 
-  </style>
+  
+/* CV is intentionally photo-free; the About section retains the portfolio portrait. */
+#cv .cv-photo-wrap{display:none!important}
+</style>
 <style>
 /* Professional experience added without altering mobile CV layout */
 .cv-clients{margin-top:10px!important;color:#3e5838!important}.cv-clients strong{color:#1d3420}
@@ -1066,13 +1069,13 @@
 .cv-pdf-export .cv-paper-grid{display:grid!important;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr)!important;gap:28px!important;padding-top:24px!important;}
 .cv-pdf-export .cv-paper-head{display:flex!important;flex-direction:row!important;justify-content:space-between!important;align-items:center!important;gap:24px!important;}
 .cv-pdf-export h3{font-size:66px!important;line-height:.9!important;letter-spacing:-.08em!important;}
-.cv-pdf-export .cv-photo-wrap{display:block!important;transform:rotate(2deg)!important;padding:6px!important;}
+.cv-pdf-export .cv-photo-wrap{display:none!important;}
 .cv-pdf-export .cv-photo{width:100px!important;height:123px!important;}
 .cv-pdf-export .cv-contact{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;gap:7px 16px!important;}
 .cv-pdf-export .cv-kicker{display:flex!important;justify-content:space-between!important;}
 .cv-pdf-export .cv-paper-foot{display:flex!important;justify-content:space-between!important;}
 .cv-pdf-export .cv-block,.cv-pdf-export .cv-item{break-inside:avoid!important;page-break-inside:avoid!important;}
-@media print { .cv-paper .cv-photo-wrap{display:block!important} }
+@media print { .cv-paper .cv-photo-wrap{display:none!important} }
 </style></head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -1555,7 +1558,7 @@
 <div class="cv-kicker"><span>Curriculum Vitae / 2026</span><span>Developer · Nigeria</span></div>
 <div class="cv-paper-head">
 <div><h3>Aliyu<br/>Usman<span style="color:#82a45d">.</span></h3><p class="cv-role">Fullstack Developer</p></div>
-<div class="cv-photo-wrap"><img alt="Portrait of Aliyu Usman" class="cv-photo" onerror="this.parentElement.style.display='none'" src="img/Aliyu.jpg"/></div>
+
 </div>
 <div class="cv-contact">
 <a href="mailto:aliyuusman4109@gmail.com">aliyuusman4109@gmail.com</a>
@@ -1726,7 +1729,7 @@ if (whatsappLink) {
 }
   </script>
 <script>
-/* Render the actual on-page CV, including img/Aliyu.jpg, at desktop width. */
+/* Render the photo-free on-page CV at desktop width for PDF export. */
 (function(){
   const button=document.getElementById('download-cv-pdf');
   if(!button)return;
@@ -1740,20 +1743,6 @@ if (whatsappLink) {
       document.head.appendChild(s);
     });
     return libraryPromise;
-  }
-  async function loadPortrait(source,clone){
-    const img=source.querySelector('.cv-photo');
-    const output=clone.querySelector('.cv-photo');
-    if(!img||!output)throw new Error('CV portrait element not found');
-    if(!img.complete)await new Promise((resolve,reject)=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',reject,{once:true});});
-    if(!img.naturalWidth)throw new Error('Portrait not found at '+img.getAttribute('src'));
-    // The image is on the same site as this HTML. Inline its pixels in the export copy.
-    const canvas=document.createElement('canvas');
-    canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
-    canvas.getContext('2d').drawImage(img,0,0);
-    output.src=canvas.toDataURL('image/jpeg',0.94);
-    output.removeAttribute('onerror');
-    await output.decode();
   }
   button.addEventListener('click',async function(e){
     e.preventDefault();
@@ -1769,7 +1758,6 @@ if (whatsappLink) {
       copy.classList.add('cv-pdf-export');
       copy.setAttribute('aria-hidden','true');
       document.body.appendChild(copy);
-      await loadPortrait(paper,copy);
       if(document.fonts?.ready)await document.fonts.ready;
       await window.html2pdf().set({
         margin:0,filename:'Aliyu_Usman_CV.pdf',
@@ -1780,7 +1768,7 @@ if (whatsappLink) {
       }).from(copy).save();
     }catch(err){
       console.error('CV export:',err);
-      alert('Could not generate the CV automatically. Check that img/Aliyu.jpg loads, then try again. You can also use your browser’s Print → Save as PDF.');
+      alert('Could not generate the CV automatically. Check your internet connection, then try again.');
     }finally{
       if(copy)copy.remove();
       button.textContent=original;delete button.dataset.busy;
