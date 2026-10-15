@@ -1076,6 +1076,27 @@
 .cv-pdf-export .cv-paper-foot{display:flex!important;justify-content:space-between!important;}
 .cv-pdf-export .cv-block,.cv-pdf-export .cv-item{break-inside:avoid!important;page-break-inside:avoid!important;}
 @media print { .cv-paper .cv-photo-wrap{display:none!important} }
+</style><style>
+/* PDF export uses a temporarily visible desktop-sized CV, independent of mobile styles. */
+#cv-export-stage .cv-pdf-export{
+  position:relative!important;left:auto!important;top:auto!important;z-index:auto!important;
+  display:block!important;visibility:visible!important;opacity:1!important;
+  width:794px!important;min-width:794px!important;max-width:none!important;
+  margin:0!important;padding:32px 42px!important;box-sizing:border-box!important;
+  background:#fffefa!important;box-shadow:none!important;border-radius:0!important;
+  transform:none!important;overflow:visible!important;flex-shrink:0!important;
+}
+#cv-export-stage .cv-pdf-export .cv-paper-grid{
+  display:grid!important;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr)!important;
+  gap:28px!important;padding-top:24px!important;
+}
+#cv-export-stage .cv-pdf-export .cv-paper-head{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important}
+#cv-export-stage .cv-pdf-export h3{font-size:66px!important;line-height:.9!important}
+#cv-export-stage .cv-pdf-export .cv-contact{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;gap:7px 16px!important}
+#cv-export-stage .cv-pdf-export .cv-kicker,#cv-export-stage .cv-pdf-export .cv-paper-foot{display:flex!important;flex-direction:row!important;justify-content:space-between!important}
+#cv-export-stage .cv-pdf-export .cv-photo-wrap{display:none!important}
+#cv-export-stage .cv-pdf-export .cv-block p,#cv-export-stage .cv-pdf-export .cv-block li{font-size:.76rem!important;line-height:1.52!important}
+#cv-export-stage .cv-pdf-export .cv-statement p{font-size:.88rem!important;line-height:1.55!important}
 </style></head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -1737,49 +1758,72 @@ if (whatsappLink) {
 }
   </script>
 <script>
-/* Render the photo-free on-page CV at desktop width for PDF export. */
-(function(){
-  const button=document.getElementById('download-cv-pdf');
-  if(!button)return;
-  let libraryPromise;
-  function loadPDFLibrary(){
-    if(window.html2pdf)return Promise.resolve();
-    if(!libraryPromise)libraryPromise=new Promise((resolve,reject)=>{
-      const s=document.createElement('script');
-      s.src='https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
-      s.onload=resolve;s.onerror=()=>reject(new Error('PDF library could not load'));
-      document.head.appendChild(s);
-    });
-    return libraryPromise;
+/* Generate the PDF from the current CV at click time. No stored/embedded PDF. */
+(function () {
+  const button = document.getElementById('download-cv-pdf');
+  if (!button) return;
+  let loader;
+  function loadRenderer() {
+    if (window.html2canvas && window.jspdf && window.jspdf.jsPDF) return Promise.resolve();
+    if (!loader) loader = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+      script.onload = () => (window.html2canvas && window.jspdf?.jsPDF) ? resolve() : reject(new Error('PDF renderer unavailable'));
+      script.onerror = () => reject(new Error('Could not load PDF renderer. Check your internet connection.'));
+      document.head.appendChild(script);
+    }).catch(error => { loader = null; throw error; });
+    return loader;
   }
-  button.addEventListener('click',async function(e){
-    e.preventDefault();
-    if(button.dataset.busy)return;
-    const original=button.textContent;
-    button.dataset.busy='1';button.textContent='Preparing CV…';
-    let copy;
-    try{
-      await loadPDFLibrary();
-      const paper=document.querySelector('#cv .cv-paper');
-      if(!paper)throw new Error('CV content not found');
-      copy=paper.cloneNode(true);
+  button.addEventListener('click', async event => {
+    event.preventDefault();
+    if (button.dataset.busy) return;
+    button.dataset.busy = '1';
+    const label = button.textContent;
+    button.textContent = 'Preparing CV…';
+    let stage;
+    try {
+      await loadRenderer();
+      const original = document.querySelector('#cv .cv-paper');
+      if (!original) throw new Error('CV not found');
+      /* IMPORTANT: Capture a real, visible, in-viewport copy. Capturing an
+         element positioned thousands of pixels offscreen produces blank PDFs. */
+      stage = document.createElement('div');
+      stage.id = 'cv-export-stage';
+      stage.setAttribute('aria-hidden', 'true');
+      stage.style.cssText = 'position:fixed;inset:0;z-index:2147483646;overflow:auto;background:#151815;display:flex;justify-content:center;align-items:flex-start;padding:0;';
+      const copy = original.cloneNode(true);
       copy.classList.add('cv-pdf-export');
-      copy.setAttribute('aria-hidden','true');
-      document.body.appendChild(copy);
-      if(document.fonts?.ready)await document.fonts.ready;
-      await window.html2pdf().set({
-        margin:0,filename:'Aliyu_Usman_CV.pdf',
-        image:{type:'jpeg',quality:.98},
-        html2canvas:{scale:2,useCORS:true,backgroundColor:'#fffefa',scrollX:0,scrollY:0,windowWidth:1200},
-        jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},
-        pagebreak:{mode:['css','legacy']}
-      }).from(copy).save();
-    }catch(err){
-      console.error('CV export:',err);
-      alert('Could not generate the CV automatically. Check your internet connection, then try again.');
-    }finally{
-      if(copy)copy.remove();
-      button.textContent=original;delete button.dataset.busy;
+      stage.appendChild(copy);
+      document.body.appendChild(stage);
+      if (document.fonts?.ready) await document.fonts.ready;
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      const canvas = await window.html2canvas(copy, {
+        backgroundColor: '#fffefa', scale: 2, useCORS: true,
+        logging: false, scrollX: 0, scrollY: 0,
+        windowWidth: Math.max(1200, document.documentElement.clientWidth),
+        onclone: doc => {
+          const exported = doc.querySelector('#cv-export-stage .cv-pdf-export');
+          if (exported) { exported.style.opacity = '1'; exported.style.visibility = 'visible'; }
+        }
+      });
+      if (!canvas.width || !canvas.height) throw new Error('CV capture failed');
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4', compress:true });
+      const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
+      const margin = 8;
+      const factor = Math.min((pageW - margin*2)/canvas.width, (pageH - margin*2)/canvas.height);
+      const width = canvas.width*factor, height = canvas.height*factor;
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.96), 'JPEG', (pageW-width)/2, (pageH-height)/2, width, height, undefined, 'FAST');
+      pdf.setProperties({ title:'Aliyu Usman | Fullstack Developer CV', author:'Aliyu Usman' });
+      pdf.save('Aliyu_Usman_CV.pdf');
+    } catch (error) {
+      console.error('CV export failed:', error);
+      alert('CV download could not be generated. Please check your connection and try again.');
+    } finally {
+      if (stage) stage.remove();
+      button.textContent = label;
+      delete button.dataset.busy;
     }
   });
 })();
